@@ -1,0 +1,32 @@
+{
+  "id": "liquid-physics",
+  "category": "food-beverage",
+  "request": "Create a 10-second sensory UGC review centered on pouring and first taste.",
+  "product_context": "Packaged beverage with a visibly thick liquid, clear cup, and a first-pour sensory moment.",
+  "expected_modules": [
+    "references/core.md",
+    "references/creative-strategy.md",
+    "references/categories/food-beverage.md",
+    "references/prompt-compiler.md"
+  ],
+  "forbidden_modules": [
+    "references/campaign-engine.md",
+    "references/performance-learning.md",
+    "references/qa-and-repair.md"
+  ],
+  "expected_behavior": [
+    "Choose sensory, ASMR, or first-taste framing.",
+    "Use the pour or texture as the hero moment.",
+    "Leave enough time for a believable sip and restrained reaction."
+  ],
+  "critical_constraints": [
+    "Keep viscosity consistent across shots.",
+    "Track liquid level continuously.",
+    "Respect gravity, cup contact, and realistic pouring speed."
+  ],
+  "failure_conditions": [
+    "Liquid behaves like a different viscosity between shots.",
+    "Cup refills or drains without a causal action.",
+    "Liquid clips through the cup or container."
+  ]
+}
