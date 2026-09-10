@@ -12,6 +12,8 @@ Use:
 - natural-language directions
 - explicit continuity
 
+If the actual generation workflow exposes a shorter duration than the creative plan, recompile the story for the available duration rather than shrinking every beat proportionally.
+
 ## Veo-style
 Prefer:
 - rich temporal prose
@@ -19,8 +21,31 @@ Prefer:
 - environmental audio
 - causal action flow
 - realistic scene detail
+- simple physical objectives per generation when interaction is fragile
 
 Avoid keyword stuffing.
+
+### Short-duration workflow adaptation
+
+When the tested Flow/Veo workflow provides only a short per-generation duration, treat that duration as a production constraint for the current run rather than as a reason to compress a longer story into rushed timestamps.
+
+For multi-state product reviews:
+
+- split around causal state boundaries;
+- give each generation one primary physical objective;
+- repeat the exact product/reference lock in every clip;
+- define the end state of one clip and the compatible start state of the next;
+- protect dedicated hero-result time;
+- assemble with simple hard cuts or a natural sound bridge.
+
+Example:
+
+```text
+8s clip A: ingredient proof → secure lid → start processing
+8s clip B: open finished state → stable result proof → natural verdict
+```
+
+This rule is based on observed workflow behavior from a real showcase test. Do not generalize a specific duration limit to every Veo product, account, interface, or future version unless the current environment confirms it.
 
 ## Kling-style
 Prefer:
