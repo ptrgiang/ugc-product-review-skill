@@ -16,9 +16,15 @@ The showcase is intentionally separate from `skills/`. The installable skill sho
 
 **Repair:** `setup → start` in clip A, then `open → hero result → natural verdict` in clip B.
 
-[Open the full case →](appliance-multistate-google-flow.md)
+### Evidence preview
 
-[Open the evidence bundle →](evidence/flow-appliance-001/README.md)
+![FLOW-APPLIANCE-001 V01 contact sheet](evidence/flow-appliance-001/v01-contact-sheet.jpg)
+
+- [Watch V01 clip 1 — setup / processing](evidence/flow-appliance-001/v01-clip-1-preview.mp4)
+- [Watch V01 clip 2 — reveal / verdict](evidence/flow-appliance-001/v01-clip-2-preview.mp4)
+- [View product reference](evidence/flow-appliance-001/reference-product.jpg)
+- [Open the full case →](appliance-multistate-google-flow.md)
+- [Open the evidence bundle →](evidence/flow-appliance-001/README.md)
 
 ## Showcase standard
 
