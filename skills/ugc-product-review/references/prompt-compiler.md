@@ -63,32 +63,86 @@ Better:
 
 ## 5. Multi-clip mode
 
-Use when one long generation is fragile.
+Use when one long generation is fragile **or when the target workflow's available clip duration is shorter than the intended story**.
+
+Do not compress a longer narrative into a shorter model limit just to preserve the original timestamps. Recompile the story natively for the available clip duration.
+
+### Activation signals
+
+Prefer multi-clip compilation when one or more are true:
+
+- the target workflow has a known short per-generation duration limit;
+- the sequence requires several fragile product states or state reversals;
+- more than one difficult hand/product interaction must happen in the same generation;
+- a hero result needs dedicated readable screen time that would otherwise be squeezed;
+- an earlier generation showed product drift, hand failure, state discontinuity, or rushed payoff caused by temporal overload.
+
+### Segmentation rule
+
+Each generated clip should have **one primary physical objective**.
+
+Examples:
+
+```text
+clip 1: setup → start
+clip 2: result → verdict
+```
+
+```text
+clip 1: package → open
+clip 2: reveal → try-on
+```
+
+```text
+clip 1: dirty state → apply product
+clip 2: wipe → clean proof
+```
+
+Avoid making every clip a miniature full story. The final edit carries the complete narrative.
 
 Return:
 
 ### SHARED CONTINUITY
 creator, wardrobe, product, environment, lighting, scale
 
-### CLIP 1 — HOOK
+### CLIP 1 — PHYSICAL OBJECTIVE
 prompt
 
 ### STATE HANDOFF
-product state
+exact end state needed by the next clip
 
-### CLIP 2 — DEMO
+### CLIP 2 — PHYSICAL OBJECTIVE
 prompt
 
-### CLIP 3 — HERO RESULT
-prompt
-
-### CLIP 4 — VERDICT
-prompt
+### OPTIONAL ADDITIONAL CLIPS
+only when the story genuinely needs them
 
 ### EDIT ASSEMBLY
 cut order, sound bridge, dialogue placement
 
 Critical continuity must be repeated per clip.
+
+### State handoff quality
+
+Weak:
+
+```text
+Continue from the previous clip.
+```
+
+Better:
+
+```text
+same appliance + same bowl + same lid orientation + same counter position + processing underway
+```
+
+The next clip should start from a causally compatible state, not merely a visually similar composition.
+
+### Hero-time protection
+
+Do not let setup consume the result.
+
+For transformation-led reviews, reserve enough time in the result clip for the proof to be readable before verdict dialogue or a new action begins. A stable 1.5–2 second hero hold is a useful default when the target duration allows it.
 
 ## 6. Audio
 
@@ -100,6 +154,8 @@ Prioritize:
 
 Keep product sound audible during demonstrations.
 
+For multi-clip edits, a simple natural sound bridge may connect a causal time jump when useful. Do not rely on elaborate transition sound design to hide continuity problems.
+
 ## 7. Editing
 
 Default:
@@ -108,6 +164,8 @@ Default:
 - no cinematic transitions
 - no commercial logo end card
 - no unnecessary speed ramps
+
+When clips are generated separately, prefer a clean causal hard cut over inventing an in-model transition.
 
 ## 8. On-screen text
 
@@ -132,5 +190,14 @@ Check:
 - state transitions are valid
 - product/creator locks are present
 - prompt is not overloaded
+- requested story duration fits the target generation workflow
+- if split, each clip has one primary physical objective
+- if split, the state handoff is explicit and causally valid
 
 Revise before returning if not.
+
+## 11. Evidence-backed compiler note
+
+A real Google Flow / Veo appliance test showed that a concept originally designed as a ~12-second one-pass story became more reliable when recompiled as two native 8-second generations rather than squeezing the same five-state timeline into the shorter workflow limit.
+
+Treat this as a general compiler lesson, not a universal Veo capability claim: **when the actual generation environment exposes a shorter limit than the creative plan, preserve the concept and proof hierarchy, then re-segment the physical objectives for the available duration.**
