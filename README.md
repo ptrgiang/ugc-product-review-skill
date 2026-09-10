@@ -1,10 +1,13 @@
 # UGC Product Review Skill
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-5B5BD6)](https://agentskills.io)
+[![Agent Plugins](https://img.shields.io/badge/Agent%20Plugins-1.0-2D8CFF)](https://agent-plugins.org/)
 [![Validate skill](https://github.com/ptrgiang/ugc-product-review-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/ptrgiang/ugc-product-review-skill/actions/workflows/validate-skill.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/ptrgiang/ugc-product-review-skill?style=flat)](https://github.com/ptrgiang/ugc-product-review-skill/stargazers)
 [![Pull requests welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+English · [Tiếng Việt](README.vi.md)
 
 A modular Agent Skill for turning product references into **realistic UGC product-review video concepts and generation-ready prompts**.
 
@@ -28,7 +31,7 @@ This skill gives coding agents and general-purpose agents a reusable production 
 
 ## Install
 
-The easiest cross-agent installation uses the open `skills` CLI:
+### Fastest cross-agent path
 
 ```bash
 npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-review
@@ -47,15 +50,34 @@ npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-revi
 npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-review -a codex
 ```
 
-List the skills detected in this repository without installing:
+List the skills detected in this repository:
 
 ```bash
 npx skills@latest add ptrgiang/ugc-product-review-skill --list
 ```
 
-You can also copy `skills/ugc-product-review/` into the skills directory used by your agent.
+### GitHub CLI
 
-See [Compatibility](docs/COMPATIBILITY.md) for agent-specific notes.
+Recent GitHub CLI versions include the preview `gh skill` workflow.
+
+Preview before installing:
+
+```bash
+gh skill preview ptrgiang/ugc-product-review-skill ugc-product-review
+```
+
+Install directly:
+
+```bash
+gh skill install ptrgiang/ugc-product-review-skill ugc-product-review --agent claude-code
+gh skill install ptrgiang/ugc-product-review-skill ugc-product-review --agent codex
+```
+
+The repository also ships a root `plugin.json` conforming to Agent Plugins 1.0 so compatible plugin hosts can discover the skill from the standard `skills/` directory.
+
+You can always copy `skills/ugc-product-review/` manually into the skills directory used by your agent.
+
+See [Compatibility](docs/COMPATIBILITY.md) for details.
 
 ## Quick start
 
@@ -137,7 +159,9 @@ skills/ugc-product-review/
 
 The skill uses standard YAML frontmatter (`name`, `description`) and relative references. Vendor-specific metadata is optional and isolated under `agents/` so the core instructions remain client-neutral.
 
-See [Architecture](docs/ARCHITECTURE.md) for the routing model and [Compatibility](docs/COMPATIBILITY.md) for installation guidance.
+At repository level, `plugin.json` adds portable Agent Plugins packaging without changing the skill itself.
+
+See [Architecture](docs/ARCHITECTURE.md), [Compatibility](docs/COMPATIBILITY.md), and the [Adoption Checklist](docs/ADOPTION_CHECKLIST.md).
 
 ## Repository layout
 
@@ -148,9 +172,6 @@ ugc-product-review-skill/
 │   ├── workflows/
 │   └── pull_request_template.md
 ├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── COMPATIBILITY.md
-│   └── ROADMAP.md
 ├── examples/
 ├── scripts/
 │   └── validate_skill.py
@@ -162,6 +183,7 @@ ugc-product-review-skill/
 │       ├── references/
 │       │   └── categories/
 │       └── assets/
+├── plugin.json
 ├── AGENTS.md
 ├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md
@@ -183,6 +205,12 @@ CI runs the same validation on pushes and pull requests.
 
 The validator checks the canonical skill, frontmatter, referenced files, and the progressive-disclosure size guard.
 
+For GitHub CLI publishing workflows, you can also run:
+
+```bash
+gh skill publish --dry-run
+```
+
 ## Contributing
 
 Contributions are welcome, especially:
@@ -194,13 +222,15 @@ Contributions are welcome, especially:
 - cross-agent compatibility fixes
 - evaluation fixtures and better validation
 
-Small, focused pull requests are easier to review and merge. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](docs/ROADMAP.md).
+Small, focused pull requests are easier to review and merge. Start with [CONTRIBUTING.md](CONTRIBUTING.md), [ROADMAP.md](docs/ROADMAP.md), or [Contributor Ideas](docs/CONTRIBUTOR_IDEAS.md).
 
 If you want a low-risk first contribution, add a missing product category or improve one existing category with a reproducible product-interaction case.
 
 ## Project status
 
 The core architecture is usable today. The project is intentionally evolving around real generation failures, agent compatibility, and community-contributed product categories rather than growing a monolithic prompt library.
+
+See [Benchmarks](docs/BENCHMARKS.md) for the evaluation direction. The project does not claim model-quality scores until they are reproducible.
 
 ## License
 
