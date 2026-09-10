@@ -1,0 +1,32 @@
+{
+  "id": "electronics-controls",
+  "category": "electronics",
+  "request": "Create a 10-second UGC product demo for this compact electronic gadget.",
+  "product_context": "Small consumer-electronics device with fixed screen orientation, visible buttons, ports, cable connection, and one useful feature to demonstrate.",
+  "expected_modules": [
+    "references/core.md",
+    "references/creative-strategy.md",
+    "references/categories/electronics.md",
+    "references/prompt-compiler.md"
+  ],
+  "forbidden_modules": [
+    "references/campaign-engine.md",
+    "references/performance-learning.md",
+    "references/qa-and-repair.md"
+  ],
+  "expected_behavior": [
+    "Choose a problem-solution, feature-test, discovery, or desk-routine angle.",
+    "Keep the demonstrated feature tied to visible or supplied product facts.",
+    "Use activation or actual use as the hero moment."
+  ],
+  "critical_constraints": [
+    "Preserve port, button, screen, cable, and device geometry.",
+    "Do not invent hidden functions or extra controls.",
+    "Keep cable orientation and device scale physically plausible."
+  ],
+  "failure_conditions": [
+    "Ports or buttons move between shots.",
+    "The prompt invents a feature absent from supplied product context.",
+    "The device changes size or screen orientation."
+  ]
+}
