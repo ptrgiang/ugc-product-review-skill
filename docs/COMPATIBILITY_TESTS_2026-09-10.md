@@ -6,9 +6,9 @@ This document records the first reproducible compatibility run for the `ugc-prod
 
 | Agent | Model / mode | Activation | Lazy references | Notes |
 | --- | --- | --- | --- | --- |
-| Claude Code | Sonnet 5, caveman mode | Pass | Pass | Correct routing on single prompt and campaign tests; repair test loaded one extra compiler reference before router tightening |
-| Codex | GPT-5.6 Terra, medium | Pass | Pass | After router tightening and reinstall, all three baseline routes loaded the expected minimal references |
-| Codex | GPT-5.6 Terra, high | Pass | Pending re-test | Initial run activated the skill but did not load sibling references; high-mode re-test is still pending |
+| Claude Code | Sonnet 5, caveman mode | Pass | Pass | Single-product, campaign-concepts, and diagnosis-only routing verified against the tightened router |
+| Codex | GPT-5.6 Terra, medium | Pass | Pass | All three baseline routes loaded the expected minimal references after router tightening and reinstall |
+| Codex | GPT-5.6 Terra, high | Pass | Pass | Current single-product smoke test loaded the expected minimal references |
 
 ## Expected routes
 
@@ -28,6 +28,8 @@ Claude Code matched exactly.
 Codex medium initially activated the skill without loading sibling references. After adding an explicit reference-loading contract, refreshing the installed skill, and verifying sibling-file access, Codex medium re-ran Test 1 and matched the expected route exactly.
 
 The re-test also improved output quality: the response stopped inventing unsupported controls or claims and preserved a more conservative product-consistency workflow.
+
+Codex Terra high later ran the same current-router smoke test and also matched the expected four-file route exactly.
 
 ## Test 2 — campaign concepts only
 
@@ -68,24 +70,24 @@ A category reference may be added only when product-specific construction or phy
 
 Claude Code loaded `core.md`, `qa-and-repair.md`, and `prompt-compiler.md` in the original run. The extra compiler reference was not necessary for a diagnosis-only task, so the root router was tightened after this test.
 
-Codex Terra medium re-ran Test 3 after the routing changes and matched the expected minimal route exactly:
+After refreshing the latest skill, Claude Code re-ran Test 3 and matched the expected minimal route exactly:
 
 ```text
 core.md
 qa-and-repair.md
 ```
 
-It correctly avoided `prompt-compiler.md` because the request asked for diagnosis and targeted repair instructions only, not a rewritten generation prompt.
+Codex Terra medium also re-ran Test 3 after the routing changes and matched the same expected minimal route exactly.
 
-The resulting diagnosis also followed the QA taxonomy and targeted-repair approach: product morphing, control-layout drift, hand/grip complexity, and hero-moment pacing were separated into actionable repair instructions without rewriting unaffected creative sections.
+Both agents correctly avoided `prompt-compiler.md` because the request asked for diagnosis and targeted repair instructions only, not a rewritten generation prompt.
+
+The resulting diagnoses followed the QA taxonomy and targeted-repair approach: product morphing, control-layout drift, hand/grip complexity, and hero-moment pacing were separated into actionable repair instructions without rewriting unaffected creative sections.
 
 ## Findings
 
 ### Claude Code
 
-The progressive-disclosure architecture works as intended. The agent respected category routing and campaign-specific loading. Output quality was strongest when it loaded the category and QA modules explicitly.
-
-A diagnosis-only re-test is still useful to confirm the tightened router now excludes `prompt-compiler.md` unless a revised generation prompt is requested.
+The progressive-disclosure architecture works as intended on the tested Claude Code setup. The agent respected category routing, campaign-specific loading, and diagnosis-only exclusions after the router tightening.
 
 ### Codex
 
@@ -97,7 +99,9 @@ After strengthening the routing contract and separating concept-only campaign be
 - concept-only campaign
 - generated-video diagnosis-only
 
-This validates the modular progressive-disclosure architecture on Codex Terra medium without flattening the skill or duplicating vendor-specific copies.
+Codex Terra high also passed the current single-product smoke test with the expected minimal reference set.
+
+This validates the modular progressive-disclosure architecture on the tested Codex setups without flattening the skill or duplicating vendor-specific copies.
 
 ## Changes made during this run
 
@@ -112,9 +116,14 @@ This validates the modular progressive-disclosure architecture on Codex Terra me
 
 OpenAI-specific metadata also reinforces the same routing behavior without changing the canonical skill design.
 
-## Next verification
+## Baseline status
 
-1. Re-run diagnosis-only routing on Claude Code after refreshing the latest skill.
-2. Run one lightweight Codex Terra high smoke test against the current router.
+Current verified baseline:
 
-If these pass, mark Claude Code and Codex Terra medium/high as verified for the current baseline and move to real Google Flow video-generation demos.
+```text
+Claude Code — Sonnet 5, caveman mode      PASS
+Codex — GPT-5.6 Terra medium              PASS
+Codex — GPT-5.6 Terra high                PASS (single-product smoke test)
+```
+
+The next phase is real AI-video generation evaluation in Google Flow, using reproducible product inputs, generation prompts, QA scoring, and targeted repair rounds.
