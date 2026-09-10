@@ -1,0 +1,32 @@
+{
+  "id": "cleaning-before-after",
+  "category": "home-utility",
+  "request": "Create a 12-second before-and-after UGC cleaning review.",
+  "product_context": "Cleaning product used on a visibly dirty hard surface where the same area can be shown before, during contact, and after wiping.",
+  "expected_modules": [
+    "references/core.md",
+    "references/creative-strategy.md",
+    "references/categories/home-utility.md",
+    "references/prompt-compiler.md"
+  ],
+  "forbidden_modules": [
+    "references/campaign-engine.md",
+    "references/performance-learning.md",
+    "references/qa-and-repair.md"
+  ],
+  "expected_behavior": [
+    "Use a problem-solution, one-pass test, or before-after concept.",
+    "Keep the same target area visible enough to compare states.",
+    "Use the wipe reveal or half-clean comparison as the hero moment."
+  ],
+  "critical_constraints": [
+    "Keep stain or dirt position consistent until physically removed.",
+    "Show actual product-to-surface contact.",
+    "Use a plausible cleaning speed and amount of residue."
+  ],
+  "failure_conditions": [
+    "Dirt teleports or changes position before contact.",
+    "Surface becomes magically restored with no plausible action.",
+    "Before and after shots cannot be visually compared."
+  ]
+}
