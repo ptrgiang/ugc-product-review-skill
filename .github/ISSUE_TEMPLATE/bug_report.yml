@@ -1,0 +1,31 @@
+name: Bug report
+description: Report a routing, prompt-generation, QA, or documentation problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What did the skill do incorrectly?
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Example input
+      description: Provide the user request or minimal reproduction.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Agent / model / environment
+      description: Optional context about the coding agent or video model.

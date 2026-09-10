@@ -1,9 +1,11 @@
 {
   "name": "ugc-product-review",
   "repo": "ugc-product-review-skill",
-  "version": "4.1",
+  "version": "1.0.0",
   "canonical_skill": "skills/ugc-product-review/SKILL.md",
   "architecture": "progressive-disclosure",
+  "license": "MIT",
+  "validation": "python scripts/validate_skill.py",
   "references": [
     "README.md",
     "campaign-engine.md",

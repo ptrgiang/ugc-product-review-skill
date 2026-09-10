@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest a new category, workflow, adapter, or production capability
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What production problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the desired routing or output behavior.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Core routing
+        - Creative strategy
+        - Prompt compiler
+        - Product category
+        - Model adapter
+        - Campaign engine
+        - QA / repair
+        - Performance learning
+        - Documentation / tooling
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
