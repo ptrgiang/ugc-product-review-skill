@@ -1,0 +1,4 @@
+# Keep generated-video evidence out of normal Git object growth.
+# Full-resolution showcase videos should use Git LFS when committed.
+examples/showcase/evidence/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+examples/showcase/evidence/**/*.mov filter=lfs diff=lfs merge=lfs -text
