@@ -1,0 +1,32 @@
+{
+  "id": "appliance-multistate",
+  "category": "appliances",
+  "request": "Create a realistic 12-second UGC review video for this countertop appliance.",
+  "product_context": "Countertop kitchen appliance with a removable container, locking lid, visible control panel, and a process that transforms contents before reveal.",
+  "expected_modules": [
+    "references/core.md",
+    "references/creative-strategy.md",
+    "references/categories/appliances.md",
+    "references/prompt-compiler.md"
+  ],
+  "forbidden_modules": [
+    "references/campaign-engine.md",
+    "references/performance-learning.md",
+    "references/qa-and-repair.md"
+  ],
+  "expected_behavior": [
+    "Select a demo, skeptical-test, problem-solution, or transformation-led concept based on visible proof.",
+    "Track the product through valid loaded, locked, running, finished, and opened states.",
+    "Reserve a clear hero moment for the transformed result."
+  ],
+  "critical_constraints": [
+    "Preserve control-panel, lid, and container geometry.",
+    "Do not operate the appliance while it is unsupported or being carried.",
+    "Keep product sound or mechanism evidence available during the demo."
+  ],
+  "failure_conditions": [
+    "Product changes geometry between shots.",
+    "State order becomes physically impossible.",
+    "Hero result is omitted or too brief to understand."
+  ]
+}
