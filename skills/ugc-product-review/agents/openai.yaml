@@ -1,0 +1,4 @@
+interface:
+  display_name: "UGC Product Review"
+  short_description: "Create realistic UGC product review video prompts"
+  default_prompt: "Use $ugc-product-review to analyze this product, choose the strongest realistic UGC review angle, preserve creator and product consistency, and produce a generation-ready video prompt with only the references needed for this task."
