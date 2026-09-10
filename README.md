@@ -29,10 +29,17 @@ product reference → agent route → production prompt → real generation → 
 
 The first showcase case tests a difficult appliance sequence with a fixed product reference, lid interaction, control interaction, processing state, result reveal, and creator verdict. A real generation exposed the practical 8-second clip constraint, so the next revision moves from a fragile long sequence to a **2 × 8s split-clip production plan**.
 
+![FLOW-APPLIANCE-001 V01 contact sheet](examples/showcase/evidence/flow-appliance-001/v01-contact-sheet.jpg)
+
+**V01 QA:** `13 / 16`
+
+- [Watch clip 1 — setup / processing](examples/showcase/evidence/flow-appliance-001/v01-clip-1-preview.mp4)
+- [Watch clip 2 — reveal / verdict](examples/showcase/evidence/flow-appliance-001/v01-clip-2-preview.mp4)
+- [View the product reference](examples/showcase/evidence/flow-appliance-001/reference-product.jpg)
 - [Open the showcase index](examples/showcase/README.md)
 - [Open the full appliance case](examples/showcase/appliance-multistate-google-flow.md)
 
-The showcase records what worked, what failed, the QA tags, and why the next prompt revision changes only the affected production decisions. This follows the same proof-first pattern used by strong creative/demo repositories: show the actual output path, disclose the exact ask/prompt, and make evaluation reproducible rather than presenting polished claims alone.
+The showcase records what worked, what failed, the QA tags, and why the next prompt revision changes only the affected production decisions. This follows a proof-first pattern: show the actual output path, disclose the prompt, and make evaluation reproducible rather than presenting polished claims alone.
 
 ## Why this exists
 
