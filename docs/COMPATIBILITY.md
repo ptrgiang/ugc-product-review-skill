@@ -75,75 +75,30 @@ into the skill directory used by your client.
 Common examples include:
 
 - Claude Code: `.claude/skills/` or `~/.claude/skills/`
-- Codex: `.codex/skills/`, `.agents/skills/`, or the current Codex global skills directory depending on installation method
+- Codex: `.codex/skills/` or the Codex global skills directory
 - Universal / several compatible agents: `.agents/skills/`
 
 Exact paths may evolve, so prefer the `skills` CLI, `gh skill`, or your client's current documentation.
 
-## Verified compatibility results
-
-Test date: 2026-09-10.
-
-### Claude Code — Sonnet 5, caveman mode
-
-Status: **PASS for activation and progressive reference loading**.
-
-Observed routing:
-
-- single product prompt: `core.md`, `creative-strategy.md`, `categories/appliances.md`, `prompt-compiler.md`
-- campaign concepts only: `core.md`, `creative-strategy.md`, `categories/appliances.md`, `campaign-engine.md`
-- repair/diagnosis task: `core.md`, `qa-and-repair.md`, `prompt-compiler.md`
-
-The first two routes matched the intended lazy-loading behavior. The repair route loaded `prompt-compiler.md` even though the request asked only for diagnosis and targeted repair instructions; the router has since been tightened so diagnosis-only requests should avoid the prompt compiler unless a revised generation prompt is requested.
-
-Output quality was strong overall, with explicit product-confidence handling, category-specific reasoning, campaign coverage checks, standardized QA tags, and targeted repair guidance.
-
-### Codex — GPT-5.6 Terra, medium and high
-
-Status: **PASS for skill activation, PARTIAL for progressive reference loading**.
-
-Observed behavior in all three smoke tests:
-
-- Codex found and used the installed `ugc-product-review` skill.
-- Codex reported reading only `SKILL.md` and did not open the routed reference files.
-- As a result, outputs were plausible but more generic and less constrained than the Claude Code outputs.
-
-Examples of drift from the intended routing included:
-
-- inventing a specific product subtype such as an air fryer or portable blender when only a generic countertop appliance was described
-- omitting the expected category/module-specific production structure
-- using generic repair heuristics without actually loading `qa-and-repair.md`
-
-The root `SKILL.md` has been updated with an explicit **reference-loading contract**: when a route lists references, agents must open those files before answering and must not claim a file was used unless it was actually read.
-
-Codex should be re-tested after reinstalling or refreshing the skill.
-
-## Smoke-test protocol
-
-Use the same three prompts across agents so results are comparable:
-
-1. single 12-second appliance review prompt
-2. 10-concept campaign without full prompts
-3. generated-video diagnosis / targeted repair only
-
-Record:
-
-- client and model/version
-- installed skill path
-- reference files actually opened
-- whether the expected route matched
-- notable output-quality differences
-
-A test is considered fully passing when:
-
-- the skill activates,
-- the required references are actually opened,
-- unrelated references remain unloaded,
-- the output follows the intended production behavior.
-
 ## OpenAI / Codex metadata
 
 `skills/ugc-product-review/agents/openai.yaml` provides optional OpenAI-specific interface metadata. The canonical `SKILL.md` does not depend on it.
+
+The OpenAI metadata now includes a defensive fallback for progressive disclosure: Codex should resolve required reference files from the directory containing `SKILL.md`, and if the native skill loader does not expose sibling files, it should use available local file or shell tools to open them before answering.
+
+### Current Codex test status
+
+Observed on Codex GPT-5.6 Terra medium after reinstall on 2026-09-10:
+
+- skill activation: PASS
+- `SKILL.md` discovery: PASS
+- progressive reference loading: FAIL in the tested host/session
+- reported required references: none
+- output generation: continued using generic model knowledge
+
+This means the skill currently activates in Codex, but the tested session did not honor the sibling-reference loading contract. Treat Codex support as **partial** until the fallback is verified in a fresh run.
+
+Claude Code Sonnet 5 with the same test set successfully loaded the routed reference files and is currently the stronger progressive-disclosure result.
 
 ## Compatibility policy
 
@@ -154,6 +109,7 @@ The repository aims to keep the skill portable by:
 - isolating model-specific prompt guidance in `references/model-adapters.md`
 - using relative paths for skill resources
 - keeping scripts optional to normal skill execution
+- documenting tested limitations instead of claiming unverified support
 
 ## Adding compatibility
 
