@@ -1,0 +1,31 @@
+{
+  "id": "fashion-mirror",
+  "category": "fashion",
+  "request": "Create a realistic 15-second UGC try-on review with a mirror reveal.",
+  "product_context": "Quilted outerwear with fixed sleeve length, zipper track, collar, pocket placement, and panel pattern.",
+  "expected_modules": [
+    "references/core.md",
+    "references/creative-strategy.md",
+    "references/categories/fashion.md",
+    "references/prompt-compiler.md"
+  ],
+  "forbidden_modules": [
+    "references/campaign-engine.md",
+    "references/performance-learning.md"
+  ],
+  "expected_behavior": [
+    "Use detail inspection, try-on, mirror reveal, and verdict as the main progression.",
+    "Keep garment construction and creator wardrobe consistent.",
+    "Treat the mirror shot as a high-risk continuity moment."
+  ],
+  "critical_constraints": [
+    "Preserve sleeve, zipper, collar, pocket, and quilting geometry.",
+    "Keep reflection-consistent product orientation.",
+    "Avoid depending on readable mirrored packaging or logos."
+  ],
+  "failure_conditions": [
+    "Mirror creates duplicate limbs or impossible phone placement.",
+    "Garment length or construction changes in the reveal.",
+    "The creator changes clothing or identity between adjacent shots."
+  ]
+}
