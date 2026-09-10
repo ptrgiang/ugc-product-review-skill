@@ -1,0 +1,32 @@
+{
+  "id": "campaign-diversity",
+  "category": "appliances",
+  "request": "Create 10 distinct UGC review concepts for this countertop appliance. Cover attention, consideration, trust, and conversion without repeating the same hook or hero moment.",
+  "product_context": "Countertop kitchen appliance with a visible transformation process, removable parts, setup considerations, and routine-use value.",
+  "expected_modules": [
+    "references/core.md",
+    "references/creative-strategy.md",
+    "references/categories/appliances.md",
+    "references/campaign-engine.md"
+  ],
+  "forbidden_modules": [
+    "references/qa-and-repair.md",
+    "references/performance-learning.md",
+    "references/model-adapters.md"
+  ],
+  "expected_behavior": [
+    "Distribute concepts across attention, consideration, trust, and conversion roles.",
+    "Use multiple hook types, proof types, emotional arcs, and narrative roles.",
+    "Detect and reject concepts that differ only by dialogue wording."
+  ],
+  "critical_constraints": [
+    "At least three distinct hook types should appear in a five-plus concept subset.",
+    "Do not overuse one hero feature when multiple meaningful features or objections exist.",
+    "Do not load prompt-compiler unless full generation prompts are also requested."
+  ],
+  "failure_conditions": [
+    "Most concepts share the same first frame and proof order.",
+    "The campaign is effectively one concept with rewritten dialogue.",
+    "QA, performance, or model-adapter modules are loaded without a task trigger."
+  ]
+}
