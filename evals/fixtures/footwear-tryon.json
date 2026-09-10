@@ -1,0 +1,32 @@
+{
+  "id": "footwear-tryon",
+  "category": "fashion",
+  "request": "Create a 12-second unboxing-to-try-on UGC review for these sneakers.",
+  "product_context": "Pair of high-top sneakers with visible outsole geometry, laces, ankle collar, side panels, and branded packaging.",
+  "expected_modules": [
+    "references/core.md",
+    "references/creative-strategy.md",
+    "references/categories/fashion.md",
+    "references/prompt-compiler.md"
+  ],
+  "forbidden_modules": [
+    "references/campaign-engine.md",
+    "references/performance-learning.md",
+    "references/qa-and-repair.md"
+  ],
+  "expected_behavior": [
+    "Use an unboxing-to-try-on or first-impression concept.",
+    "Keep left/right shoe identity consistent through hand-held and worn shots.",
+    "Use fit, side profile, walking flex, or styling as the hero proof."
+  ],
+  "critical_constraints": [
+    "Preserve outsole, lace layout, silhouette, and shoe scale.",
+    "Use a physically plausible heel-entry and lacing sequence.",
+    "Do not redesign the shoe between unboxing and try-on."
+  ],
+  "failure_conditions": [
+    "Left/right shoes swap or become duplicates.",
+    "Shoe size changes dramatically between shots.",
+    "Lace or sole geometry drifts."
+  ]
+}
