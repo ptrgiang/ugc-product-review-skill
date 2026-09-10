@@ -27,6 +27,8 @@ If a required reference cannot be accessed, state that limitation instead of sil
 
 Always open `references/core.md`, then open only the smallest additional set that materially changes the answer.
 
+Before opening optional references, classify the requested deliverable first. A request for concepts, angles, campaign ideas, or a creative plan is **not** a request for a compiled generation prompt unless the user explicitly asks for full prompts, generation-ready prompts, shot-by-shot prompts, or equivalent executable prompt output.
+
 ## Progressive disclosure routes
 
 ### One product -> ideas or one review prompt
@@ -42,7 +44,9 @@ Open `references/model-adapters.md` only when a target video model is specified.
 
 Open `references/commerce-and-claims.md` only when affiliate/paid UGC, factual claims, testimonials, health/wellness, or other claim-sensitive content matters.
 
-### Batch or campaign
+### Batch or campaign — concepts/angles only
+
+Use this route when the user asks for multiple concepts, campaign ideas, angles, hooks, or a creative plan **without asking for full generation prompts**.
 
 Open before answering:
 
@@ -51,7 +55,21 @@ Open before answering:
 - one relevant category file
 - `references/campaign-engine.md`
 
-Open `references/prompt-compiler.md` only when full generation prompts are requested.
+**Do not open `references/prompt-compiler.md` for concept-only batch/campaign requests.** Do not open `references/qa-and-repair.md`, `references/performance-learning.md`, or `references/model-adapters.md` unless the request independently requires them.
+
+### Batch or campaign — full prompts requested
+
+Use this route only when the user explicitly asks for full generation prompts or generation-ready prompt output for multiple concepts.
+
+Open before answering:
+
+- `references/core.md`
+- `references/creative-strategy.md`
+- one relevant category file
+- `references/campaign-engine.md`
+- `references/prompt-compiler.md`
+
+Open `references/model-adapters.md` only when a target video model is specified.
 
 ### Generated video or frames need review
 
@@ -104,10 +122,13 @@ When the user explicitly asks which references were used, report only files that
 The expected minimal routing patterns are:
 
 - single product prompt: `core + creative-strategy + one category + prompt-compiler`
-- campaign concepts only: `core + creative-strategy + one category + campaign-engine`
+- campaign concepts only: `core + creative-strategy + one category + campaign-engine` and **no prompt-compiler**
+- campaign full prompts: `core + creative-strategy + one category + campaign-engine + prompt-compiler`
 - generated-video diagnosis only: `core + qa-and-repair`, plus category only if needed
 - prompt repair: `core + qa-and-repair + prompt-compiler`, plus category only if needed
 - performance analysis: `core + performance-learning + campaign-engine`
+
+If the user explicitly says "do not write full generation prompts," treat that as a hard routing constraint: do not open `references/prompt-compiler.md`.
 
 ## Default behavior
 
