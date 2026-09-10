@@ -7,7 +7,7 @@ This document records the first reproducible compatibility run for the `ugc-prod
 | Agent | Model / mode | Activation | Lazy references | Notes |
 | --- | --- | --- | --- | --- |
 | Claude Code | Sonnet 5, caveman mode | Pass | Pass | Correct routing on single prompt and campaign tests; repair test loaded one extra compiler reference before router tightening |
-| Codex | GPT-5.6 Terra, medium | Pass | Pass for Tests 1–2 | After router tightening and reinstall, single-product and concept-only campaign routes loaded the expected minimal references |
+| Codex | GPT-5.6 Terra, medium | Pass | Pass | After router tightening and reinstall, all three baseline routes loaded the expected minimal references |
 | Codex | GPT-5.6 Terra, high | Pass | Pending re-test | Initial run activated the skill but did not load sibling references; high-mode re-test is still pending |
 
 ## Expected routes
@@ -68,7 +68,16 @@ A category reference may be added only when product-specific construction or phy
 
 Claude Code loaded `core.md`, `qa-and-repair.md`, and `prompt-compiler.md` in the original run. The extra compiler reference was not necessary for a diagnosis-only task, so the root router was tightened after this test.
 
-Codex medium re-test is pending.
+Codex Terra medium re-ran Test 3 after the routing changes and matched the expected minimal route exactly:
+
+```text
+core.md
+qa-and-repair.md
+```
+
+It correctly avoided `prompt-compiler.md` because the request asked for diagnosis and targeted repair instructions only, not a rewritten generation prompt.
+
+The resulting diagnosis also followed the QA taxonomy and targeted-repair approach: product morphing, control-layout drift, hand/grip complexity, and hero-moment pacing were separated into actionable repair instructions without rewriting unaffected creative sections.
 
 ## Findings
 
@@ -82,9 +91,13 @@ A diagnosis-only re-test is still useful to confirm the tightened router now exc
 
 Codex can access sibling reference files from the installed skill directory. The initial failure was therefore a routing/adherence issue, not a filesystem or host limitation.
 
-After strengthening the routing contract and separating concept-only campaign behavior, Codex Terra medium passed both the single-product and campaign-concepts routes with the expected minimal reference sets.
+After strengthening the routing contract and separating concept-only campaign behavior, Codex Terra medium passed all three baseline routes with the expected minimal reference sets:
 
-This is important because it validates the modular architecture on Codex without flattening the skill or duplicating vendor-specific copies.
+- single-product prompt
+- concept-only campaign
+- generated-video diagnosis-only
+
+This validates the modular progressive-disclosure architecture on Codex Terra medium without flattening the skill or duplicating vendor-specific copies.
 
 ## Changes made during this run
 
@@ -101,8 +114,7 @@ OpenAI-specific metadata also reinforces the same routing behavior without chang
 
 ## Next verification
 
-1. Run Test 3 on Codex Terra medium.
-2. Re-run diagnosis-only routing on Claude Code after refreshing the latest skill.
-3. Run one lightweight Codex Terra high smoke test after medium passes all three routes.
+1. Re-run diagnosis-only routing on Claude Code after refreshing the latest skill.
+2. Run one lightweight Codex Terra high smoke test against the current router.
 
-If these pass, mark Claude Code and Codex Terra medium as verified for the current baseline and move to real Google Flow video-generation demos.
+If these pass, mark Claude Code and Codex Terra medium/high as verified for the current baseline and move to real Google Flow video-generation demos.
