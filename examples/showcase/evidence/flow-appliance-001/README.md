@@ -4,16 +4,31 @@ Real-generation evidence for the first appliance multi-state Google Flow / Veo s
 
 ## Media bundle status
 
-**Prepared; binary publish pending.**
+**Published and browsable.**
 
-The case already records the real-generation observations and V01 → V02 repair. The browsing media bundle has been prepared with the following canonical names and should be published into this directory without changing those names:
+The evidence bundle is now committed under canonical names:
 
-- `reference-product.jpg` — resized showcase copy of the supplied product reference.
-- `v01-contact-sheet.jpg` — sampled frames across the two generated outputs for fast visual review.
-- `v01-clip-1-preview.mp4` — lightweight preview of the setup / processing generation.
-- `v01-clip-2-preview.mp4` — lightweight preview of the reveal / verdict generation.
+- [reference-product.jpg](reference-product.jpg) — resized showcase copy of the supplied product reference.
+- [v01-contact-sheet.jpg](v01-contact-sheet.jpg) — sampled frames across the two generated outputs for fast visual review.
+- [v01-clip-1-preview.mp4](v01-clip-1-preview.mp4) — lightweight preview of the setup / processing generation.
+- [v01-clip-2-preview.mp4](v01-clip-2-preview.mp4) — lightweight preview of the reveal / verdict generation.
 
 The preview media is intentionally compressed for repository browsing. It is evidence of the tested generation, not a training asset or canonical product reference.
+
+## Quick visual review
+
+### Product reference
+
+![Product reference](reference-product.jpg)
+
+### V01 contact sheet
+
+![V01 contact sheet](v01-contact-sheet.jpg)
+
+### Generated video previews
+
+- [Watch V01 clip 1 — setup / processing](v01-clip-1-preview.mp4)
+- [Watch V01 clip 2 — reveal / verdict](v01-clip-2-preview.mp4)
 
 ## Provenance
 
@@ -26,9 +41,9 @@ The preview media is intentionally compressed for repository browsing. It is evi
 
 ## Storage policy
 
-Keep still-image previews directly in Git when small. Generated `.mp4` / `.mov` evidence paths are covered by the repository `.gitattributes` Git LFS rules so adding more showcase video does not silently inflate normal Git object history.
+Keep still-image previews directly in Git when small. Generated `.mp4` / `.mov` evidence paths are covered by the repository `.gitattributes` Git LFS rules so future showcase video can avoid silently inflating normal Git object history.
 
-For a small representative case, publish lightweight video previews through Git LFS. If the evidence collection grows substantially, full-resolution masters may move to release assets while this directory retains stable links, contact sheets, and browsing previews.
+For a small representative case, lightweight previews may stay next to the case. If the evidence collection grows substantially, full-resolution masters can move to release assets while this directory retains stable links, contact sheets, and browsing previews.
 
 ## Integrity rule
 
