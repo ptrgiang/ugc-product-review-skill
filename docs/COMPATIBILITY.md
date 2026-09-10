@@ -2,9 +2,11 @@
 
 The canonical skill follows the open Agent Skills format: a skill directory containing `SKILL.md` with YAML frontmatter and optional supporting resources.
 
-## Recommended installer
+## Recommended installers
 
-Use the open `skills` CLI for cross-agent installation:
+### Option A — open `skills` CLI
+
+Use the open `skills` CLI for broad cross-agent installation:
 
 ```bash
 npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-review
@@ -27,6 +29,39 @@ npx skills@latest add ptrgiang/ugc-product-review-skill \
 
 The `skills` CLI supports many coding agents and handles their project/global paths. Prefer it over duplicating vendor-specific copies in this repository.
 
+### Option B — GitHub CLI
+
+Recent GitHub CLI versions include the preview `gh skill` command.
+
+Preview the skill before installation:
+
+```bash
+gh skill preview ptrgiang/ugc-product-review-skill ugc-product-review
+```
+
+Install for a coding agent:
+
+```bash
+gh skill install ptrgiang/ugc-product-review-skill ugc-product-review --agent claude-code
+gh skill install ptrgiang/ugc-product-review-skill ugc-product-review --agent codex
+```
+
+Install at user scope:
+
+```bash
+gh skill install ptrgiang/ugc-product-review-skill ugc-product-review --agent codex --scope user
+```
+
+For reproducible installs, pin a release tag or commit SHA with `--pin` after releases are published.
+
+Repository maintainers can also use:
+
+```bash
+gh skill publish --dry-run
+```
+
+to validate skill discovery before publishing workflows.
+
 ## Manual installation
 
 Copy:
@@ -43,7 +78,7 @@ Common examples include:
 - Codex: `.codex/skills/` or the Codex global skills directory
 - Universal / several compatible agents: `.agents/skills/`
 
-Exact paths may evolve, so use your client's current documentation or the `skills` CLI when possible.
+Exact paths may evolve, so prefer the `skills` CLI, `gh skill`, or your client's current documentation.
 
 ## OpenAI / Codex metadata
 
@@ -70,4 +105,5 @@ When proposing a compatibility PR, include:
 - agent/client name and version
 - install location or command
 - minimal invocation used to verify activation
+- whether progressive reference loading worked
 - any unsupported feature or caveat
