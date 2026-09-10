@@ -1,0 +1,15 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python / local tooling
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Generated local outputs
+dist/
+tmp/

@@ -1,0 +1,19 @@
+{
+  "overall_score": null,
+  "severity": null,
+  "issues": [],
+  "scores": {
+    "product_fidelity": null,
+    "creator_identity": null,
+    "hands": null,
+    "physics": null,
+    "state_continuity": null,
+    "camera_realism": null,
+    "hook_strength": null,
+    "hero_moment": null,
+    "ugc_authenticity": null,
+    "pacing": null
+  },
+  "preserve": [],
+  "repair_actions": []
+}

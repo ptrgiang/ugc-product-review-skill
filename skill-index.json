@@ -1,0 +1,28 @@
+{
+  "name": "ugc-product-review",
+  "repo": "ugc-product-review-skill",
+  "version": "4.1",
+  "canonical_skill": "skills/ugc-product-review/SKILL.md",
+  "architecture": "progressive-disclosure",
+  "references": [
+    "README.md",
+    "campaign-engine.md",
+    "commerce-and-claims.md",
+    "core.md",
+    "creative-strategy.md",
+    "model-adapters.md",
+    "performance-learning.md",
+    "prompt-compiler.md",
+    "qa-and-repair.md"
+  ],
+  "categories": [
+    "appliances.md",
+    "beauty.md",
+    "electronics.md",
+    "fashion.md",
+    "food-beverage.md",
+    "home-utility.md",
+    "pet.md",
+    "tools-diy.md"
+  ]
+}
