@@ -4,54 +4,106 @@ This directory contains proof cases where the skill is evaluated against an actu
 
 The showcase is intentionally separate from `skills/`. The installable skill should stay focused on instructions and reusable references; testing history, output evidence, and iteration logs belong here.
 
-## What every showcase case should contain
-
-A strong case should preserve the full evidence chain:
-
-```text
-input/reference
-→ user ask
-→ agent route
-→ generated prompt
-→ target model/settings
-→ real generated output
-→ QA scores + failure tags
-→ root-cause diagnosis
-→ minimal prompt repair
-→ next generated revision
-```
-
-Do not present a case as a success simply because the output looks polished. Record failures and limitations as first-class evidence.
-
 ## Featured case
 
 ### FLOW-APPLIANCE-001 — Google Flow / Veo appliance multi-state UGC
 
-[Open case](appliance-multistate-google-flow.md)
+**Result:** V01 produced usable product-consistent footage, but the original ~12-second story did not fit the tested 8-second-per-generation Flow workflow cleanly. The repair recompiles the same concept as two native 8-second clips with one physical objective per clip.
 
-**Purpose:** stress-test product geometry, controls, lid/contact physics, hands, state continuity, transformation proof, and UGC realism.
+**V01 QA:** `13 / 16`
 
-**Observed production constraint:** the real Flow workflow produced 8-second clips, making the original ~12-second one-pass concept a poor production fit.
+**Main observed weaknesses:** hero result too compressed, generic thumbs-up ending, cross-clip continuity now needs explicit production handling.
 
-**Current direction:** preserve the concept but compile it as two independently generatable 8-second clips with repeated continuity locks and a clean state handoff.
+**Repair:** `setup → start` in clip A, then `open → hero result → natural verdict` in clip B.
+
+[Open the full case →](appliance-multistate-google-flow.md)
+
+[Open the evidence bundle →](evidence/flow-appliance-001/README.md)
+
+## Showcase standard
+
+Every case should make the evidence chain easy to scan:
+
+```text
+REFERENCE / INPUT
+        ↓
+EXACT ASK
+        ↓
+AGENT ROUTE
+        ↓
+PROMPT V01
+        ↓
+REAL GENERATION
+        ↓
+QA + FAILURE TAGS
+        ↓
+ROOT CAUSE
+        ↓
+MINIMAL REPAIR
+        ↓
+PROMPT V02
+        ↓
+REGENERATION / COMPARISON
+```
+
+Do not present a case as a success simply because the output looks polished. Failures and limitations are first-class evidence.
+
+## Recommended case layout
+
+Keep the top of each case useful even for someone who does not read the full prompt:
+
+1. short result summary
+2. visual/reference evidence
+3. generated preview/contact sheet
+4. compact QA score
+5. what changed in the repair
+6. exact prompts and detailed diagnosis below
+
+Use [CASE_TEMPLATE.md](CASE_TEMPLATE.md) for new showcase cases.
 
 ## Evidence policy
 
-For representative cases, prefer showing the actual generated media near the top of the case, followed by the exact prompt and evaluation. Small preview media may live in the repository. If showcase media starts making the Git history unnecessarily large, keep lightweight previews in Git and move full-resolution video to Git LFS or release assets while retaining stable links from the case.
+For representative cases, prefer a small evidence bundle near the case:
+
+```text
+evidence/<case-id>/
+├── README.md
+├── reference-product.jpg
+├── v01-contact-sheet.jpg
+├── v01-clip-1-preview.mp4
+└── v01-clip-2-preview.mp4
+```
+
+The repository copy should be optimized for browsing, not archival quality. Keep lightweight previews in Git when practical. If showcase media begins making repository history unnecessarily large, move full-resolution videos to Git LFS or release assets and keep stable links plus small previews here.
 
 Every media item should state:
 
-- whether it is an original product reference, generated frame, or generated video
-- model/workflow used when known
-- generation date
-- prompt revision
-- whether the output is unedited or post-processed
+- whether it is a product reference, generated frame, or generated video;
+- model/workflow used when known;
+- generation date;
+- prompt revision;
+- whether the asset is original-resolution or a compressed preview;
+- whether the output is unedited or post-processed.
 
-## QA philosophy
+## What a showcase should prove
 
 The showcase exists to answer two questions:
 
 1. Does the skill make the generation workflow more reliable?
 2. When generation fails, does the skill produce a smaller and better-targeted repair rather than rewriting everything?
 
-As more cases are added, cover different product categories, physical interaction patterns, models, and failure classes rather than collecting near-duplicate good-looking outputs.
+As cases accumulate, prioritize coverage over volume. Add different product categories, interaction patterns, model/workflow constraints, and failure classes instead of collecting near-duplicate attractive outputs.
+
+## Promotion criteria
+
+A case is ready to be highlighted from the repository root when it includes:
+
+- an actual product/reference input;
+- at least one real generated output;
+- reproducible prompt revision(s);
+- explicit QA evidence;
+- honest failure notes;
+- a targeted repair or a documented pass;
+- media provenance.
+
+A polished mockup without real generation evidence is an example, not a showcase.
