@@ -1,158 +1,207 @@
-# ugc-product-review-skill
+# UGC Product Review Skill
 
-A modular Agent Skill for creating realistic UGC product-review video concepts and AI video-generation prompts.
-
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-5B5BD6)](https://agentskills.io)
 [![Validate skill](https://github.com/ptrgiang/ugc-product-review-skill/actions/workflows/validate-skill.yml/badge.svg)](https://github.com/ptrgiang/ugc-product-review-skill/actions/workflows/validate-skill.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/ptrgiang/ugc-product-review-skill?style=flat)](https://github.com/ptrgiang/ugc-product-review-skill/stargazers)
+[![Pull requests welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-The project is built around **progressive disclosure**: an agent reads a small `SKILL.md` router first, then loads only the references needed for the current task. This keeps active context focused while still supporting product strategy, category-specific realism, model adaptation, campaigns, QA, repair, and performance learning.
+A modular Agent Skill for turning product references into **realistic UGC product-review video concepts and generation-ready prompts**.
+
+It is built around one idea: an agent should load only the production knowledge that matters for the current product and task.
+
+> **Visual proof > marketing claims · Product fidelity > cinematic complexity · Human imperfection > commercial polish**
+
+## Why this exists
+
+Generic video prompts often produce attractive but unusable results: the product changes shape, hands interact incorrectly, the creator overacts, the hook feels scripted, or every campaign variation looks the same.
+
+This skill gives coding agents and general-purpose agents a reusable production system for:
+
+- product diagnosis and creative-angle selection
+- hooks, first frames, shot graphs, and hero moments
+- product and creator consistency
+- category-specific hand and physics constraints
+- single prompts, clip packs, batches, and campaigns
+- generated-video QA and targeted prompt repair
+- performance-driven creative iteration
+
+## Install
+
+The easiest cross-agent installation uses the open `skills` CLI:
+
+```bash
+npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-review
+```
+
+Install globally:
+
+```bash
+npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-review -g
+```
+
+Install to a specific agent:
+
+```bash
+npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-review -a claude-code
+npx skills@latest add ptrgiang/ugc-product-review-skill --skill ugc-product-review -a codex
+```
+
+List the skills detected in this repository without installing:
+
+```bash
+npx skills@latest add ptrgiang/ugc-product-review-skill --list
+```
+
+You can also copy `skills/ugc-product-review/` into the skills directory used by your agent.
+
+See [Compatibility](docs/COMPATIBILITY.md) for agent-specific notes.
 
 ## Quick start
 
-The canonical skill is:
+Give the agent a product image or product information and ask:
 
 ```text
-skills/ugc-product-review/SKILL.md
+Create a realistic 12-second UGC review video for this product.
 ```
 
-Copy or symlink the entire directory:
+The skill should autonomously:
+
+1. identify the product type and confidence level,
+2. find the strongest visible proof,
+3. infer the likely buyer motivation or objection,
+4. choose the strongest review angle,
+5. design the hook, first frame, emotional arc, and hero moment,
+6. build a physically plausible shot sequence,
+7. compile a generation-ready prompt,
+8. suggest genuinely different alternatives.
+
+### Campaign example
 
 ```text
-skills/ugc-product-review/
+Create 10 different UGC review concepts for this product. Avoid duplicate hooks and make the campaign cover attention, consideration, trust, and conversion.
 ```
 
-into the skills location used by your agent or coding environment.
-
-Then give the agent a request such as:
+### Repair example
 
 ```text
-Create a 12-second realistic UGC review video for this product.
+The generated video changes the product shape and the hands look wrong. Diagnose the failure and repair only the affected prompt sections.
 ```
-
-The skill should autonomously identify the product, choose the strongest angle, design the hook and hero proof, and return a production-ready video prompt.
-
-## What it can do
-
-- analyze product references and identify the strongest visual proof
-- choose an appropriate review archetype automatically
-- design hooks, first frames, emotional arcs, hero moments, and shot graphs
-- preserve creator and product consistency
-- add category-specific hand and physics constraints
-- generate single prompts, clip packs, batches, or campaigns
-- review generated video results and repair prompts
-- learn from real content-performance metrics
-- reduce concept repetition through campaign coverage logic
 
 ## Progressive disclosure
 
-A typical one-product prompt loads only:
+The canonical skill is intentionally small. Detailed knowledge lives in focused reference modules that are loaded only when relevant.
 
 ```text
-core
-+ creative strategy
-+ one product category
-+ prompt compiler
+SKILL.md
+   │
+   ├─ core.md                     always
+   ├─ creative-strategy.md        concept selection
+   ├─ prompt-compiler.md          final prompt generation
+   ├─ model-adapters.md           only when target model matters
+   ├─ campaign-engine.md          batches / campaign planning
+   ├─ qa-and-repair.md            generated-video QA / prompt repair
+   ├─ performance-learning.md     only when metrics are supplied
+   ├─ commerce-and-claims.md      claim-sensitive or commercial work
+   └─ categories/                 one product category when possible
 ```
 
-Other modules stay out of context until needed:
+This follows the Agent Skills progressive-disclosure model: metadata is cheap to discover, `SKILL.md` loads on activation, and supporting references load only when the task needs them.
 
-- model adapters only when a target video model matters
-- campaign logic only for multi-video planning
-- QA/repair only when reviewing or fixing output
-- performance learning only when real metrics are supplied
-- commerce/claims only when commercial or factual-claim rules matter
+## Supported product modules
+
+| Module | Examples |
+| --- | --- |
+| Appliances | kitchen appliances, machines, mechanical home products |
+| Fashion | clothing, footwear, bags, accessories |
+| Beauty | skincare, cosmetics, personal care |
+| Home utility | cleaning, organization, storage |
+| Electronics | devices, accessories, small gadgets |
+| Food & beverage | packaged food, drinks, sensory products |
+| Tools & DIY | tools, fastening, repair, craft workflows |
+| Pet | pet accessories and routine products |
+
+Adding a new category should usually mean adding **one focused file**, not growing the root skill. See [Contributing](CONTRIBUTING.md).
+
+## Cross-agent design
+
+The canonical implementation follows the open Agent Skills convention:
+
+```text
+skills/ugc-product-review/
+├── SKILL.md
+├── agents/
+├── references/
+└── assets/
+```
+
+The skill uses standard YAML frontmatter (`name`, `description`) and relative references. Vendor-specific metadata is optional and isolated under `agents/` so the core instructions remain client-neutral.
+
+See [Architecture](docs/ARCHITECTURE.md) for the routing model and [Compatibility](docs/COMPATIBILITY.md) for installation guidance.
 
 ## Repository layout
 
 ```text
 ugc-product-review-skill/
-├── README.md
-├── LICENSE
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── AGENTS.md
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   ├── workflows/
+│   └── pull_request_template.md
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── COMPATIBILITY.md
+│   └── ROADMAP.md
+├── examples/
 ├── scripts/
 │   └── validate_skill.py
-├── .github/
-│   ├── workflows/
-│   │   └── validate-skill.yml
-│   ├── ISSUE_TEMPLATE/
-│   └── pull_request_template.md
 ├── skills/
 │   └── ugc-product-review/
 │       ├── SKILL.md
+│       ├── agents/
+│       │   └── openai.yaml
 │       ├── references/
-│       │   ├── core.md
-│       │   ├── creative-strategy.md
-│       │   ├── prompt-compiler.md
-│       │   ├── model-adapters.md
-│       │   ├── campaign-engine.md
-│       │   ├── qa-and-repair.md
-│       │   ├── performance-learning.md
-│       │   ├── commerce-and-claims.md
 │       │   └── categories/
 │       └── assets/
-└── examples/
+├── AGENTS.md
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── SECURITY.md
+└── skill-index.json
 ```
-
-## Example workflows
-
-**Single product review**
-
-```text
-Create a realistic 10-second UGC review video for this countertop appliance.
-```
-
-**Campaign**
-
-```text
-Create 10 distinct review-video concepts for this product. Avoid repeating hooks and hero moments.
-```
-
-**Repair**
-
-```text
-The generated video changes the product shape and the hands look wrong. Diagnose it and repair the prompt.
-```
-
-See `examples/` for more.
-
-## Compatibility
-
-The repository intentionally keeps the canonical skill vendor-neutral. It follows a portable Agent Skills pattern: a self-contained skill directory with `SKILL.md`, YAML frontmatter, optional references, and optional assets.
-
-Different coding agents use different filesystem locations for skills. Keep the repository copy canonical and map `skills/ugc-product-review/` into the location expected by your client.
-
-Model-specific prompting guidance is isolated in `references/model-adapters.md` so the main skill does not depend on one video generator.
 
 ## Validation
 
-Run locally:
+Run the repository smoke validation:
 
 ```bash
 python scripts/validate_skill.py
 ```
 
-GitHub Actions runs the same validation on pushes to `main` and on pull requests. The validator checks the canonical skill, required frontmatter, referenced modules, required files, and keeps the router from growing into a monolithic prompt file.
+CI runs the same validation on pushes and pull requests.
+
+The validator checks the canonical skill, frontmatter, referenced files, and the progressive-disclosure size guard.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Repository-level guidance for coding agents lives in [AGENTS.md](AGENTS.md).
+Contributions are welcome, especially:
 
-When adding new behavior, prefer a focused reference module with a clear trigger instead of expanding `SKILL.md` or loading extra context "just in case."
+- new product-category modules
+- real prompt failure cases with before/after repairs
+- model-adapter improvements backed by reproducible examples
+- campaign-diversity improvements
+- cross-agent compatibility fixes
+- evaluation fixtures and better validation
 
-## Design principles
+Small, focused pull requests are easier to review and merge. Start with [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](docs/ROADMAP.md).
 
-- Visual proof > marketing claims
-- Product consistency > cinematic complexity
-- Physical plausibility > spectacle
-- Human imperfection > commercial polish
-- Load only what the current task requires
+If you want a low-risk first contribution, add a missing product category or improve one existing category with a reproducible product-interaction case.
 
-## Versioning
+## Project status
 
-The first public production-ready baseline is documented as **1.0.0** in [CHANGELOG.md](CHANGELOG.md).
+The core architecture is usable today. The project is intentionally evolving around real generation failures, agent compatibility, and community-contributed product categories rather than growing a monolithic prompt library.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
