@@ -15,48 +15,58 @@ Optimize for:
 - human imperfection over commercial polish
 - focused context over loading every available reference
 
-## Progressive disclosure
+## Reference-loading contract
 
-Do not load all reference files.
+This skill uses progressive disclosure. `SKILL.md` is a router, not the complete production knowledge base.
 
-Always read `references/core.md`, then read only the smallest additional set that materially changes the answer.
+When a route below lists one or more reference files, **open those files before producing the final answer**. Do not answer from `SKILL.md` alone when the selected route requires references.
+
+Use paths relative to this `SKILL.md` file. If the agent exposes a file-reading or shell tool, use it to read the required files. Do not load unrelated references "just in case."
+
+If a required reference cannot be accessed, state that limitation instead of silently substituting generic knowledge.
+
+Always open `references/core.md`, then open only the smallest additional set that materially changes the answer.
+
+## Progressive disclosure routes
 
 ### One product -> ideas or one review prompt
 
-Read:
+Open before answering:
 
 - `references/core.md`
 - `references/creative-strategy.md`
 - one relevant category file from `references/categories/`
 - `references/prompt-compiler.md`
 
-Read `references/model-adapters.md` only when a target video model is specified.
+Open `references/model-adapters.md` only when a target video model is specified.
 
-Read `references/commerce-and-claims.md` only when affiliate/paid UGC, factual claims, testimonials, health/wellness, or other claim-sensitive content matters.
+Open `references/commerce-and-claims.md` only when affiliate/paid UGC, factual claims, testimonials, health/wellness, or other claim-sensitive content matters.
 
 ### Batch or campaign
 
-Read:
+Open before answering:
 
 - `references/core.md`
 - `references/creative-strategy.md`
 - one relevant category file
 - `references/campaign-engine.md`
 
-Read `references/prompt-compiler.md` only when full generation prompts are requested.
+Open `references/prompt-compiler.md` only when full generation prompts are requested.
 
 ### Generated video or frames need review
 
-Read:
+Open before answering:
 
 - `references/core.md`
 - `references/qa-and-repair.md`
 
 Add one category file only when product-specific physics or construction matters.
 
+Do not open `references/prompt-compiler.md` unless the user asks for a revised generation prompt, not merely diagnosis or repair instructions.
+
 ### Existing prompt needs repair
 
-Read:
+Open before answering:
 
 - `references/core.md`
 - `references/qa-and-repair.md`
@@ -64,7 +74,7 @@ Read:
 
 ### Performance metrics are supplied
 
-Read:
+Open before answering:
 
 - `references/core.md`
 - `references/performance-learning.md`
@@ -86,6 +96,18 @@ Choose one primary category unless the product genuinely spans categories:
 - Pet products: `references/categories/pet.md`
 
 If no category fits, stay conservative instead of importing multiple unrelated files.
+
+## Route verification
+
+When the user explicitly asks which references were used, report only files that were actually opened. Never claim a reference was used if it was not read.
+
+The expected minimal routing patterns are:
+
+- single product prompt: `core + creative-strategy + one category + prompt-compiler`
+- campaign concepts only: `core + creative-strategy + one category + campaign-engine`
+- generated-video diagnosis only: `core + qa-and-repair`, plus category only if needed
+- prompt repair: `core + qa-and-repair + prompt-compiler`, plus category only if needed
+- performance analysis: `core + performance-learning + campaign-engine`
 
 ## Default behavior
 
