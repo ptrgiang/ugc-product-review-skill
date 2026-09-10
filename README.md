@@ -15,6 +15,25 @@ It is built around one idea: an agent should load only the production knowledge 
 
 > **Visual proof > marketing claims · Product fidelity > cinematic complexity · Human imperfection > commercial polish**
 
+## See it work
+
+This repository treats generated output as evidence, not decoration. Showcase cases preserve the chain:
+
+```text
+product reference → agent route → production prompt → real generation → QA → targeted repair
+```
+
+### Featured real-generation case
+
+**Google Flow / Veo · countertop appliance · multi-state UGC**
+
+The first showcase case tests a difficult appliance sequence with a fixed product reference, lid interaction, control interaction, processing state, result reveal, and creator verdict. A real generation exposed the practical 8-second clip constraint, so the next revision moves from a fragile long sequence to a **2 × 8s split-clip production plan**.
+
+- [Open the showcase index](examples/showcase/README.md)
+- [Open the full appliance case](examples/showcase/appliance-multistate-google-flow.md)
+
+The showcase records what worked, what failed, the QA tags, and why the next prompt revision changes only the affected production decisions. This follows the same proof-first pattern used by strong creative/demo repositories: show the actual output path, disclose the exact ask/prompt, and make evaluation reproducible rather than presenting polished claims alone.
+
 ## Why this exists
 
 Generic video prompts often produce attractive but unusable results: the product changes shape, hands interact incorrectly, the creator overacts, the hook feels scripted, or every campaign variation looks the same.
@@ -173,6 +192,7 @@ ugc-product-review-skill/
 │   └── pull_request_template.md
 ├── docs/
 ├── examples/
+│   └── showcase/                 real-generation proof cases
 ├── scripts/
 │   └── validate_skill.py
 ├── skills/
