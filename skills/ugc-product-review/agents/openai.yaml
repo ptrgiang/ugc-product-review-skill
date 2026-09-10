@@ -1,4 +1,4 @@
 interface:
   display_name: "UGC Product Review"
   short_description: "Create realistic UGC product review video prompts"
-  default_prompt: "Use $ugc-product-review to analyze this product, choose the strongest realistic UGC review angle, preserve creator and product consistency, and produce a generation-ready video prompt with only the references needed for this task."
+  default_prompt: "Use $ugc-product-review. Treat SKILL.md as a router. Before answering, open every reference required by the selected route. Resolve reference paths from the directory that contains SKILL.md, not from the current working directory. If the native skill loader does not expose sibling files, use available local file or shell tools to read them. Do not continue with zero required references and do not claim a reference was used unless it was actually opened. Then analyze the product, choose the strongest realistic UGC review angle, preserve creator and product consistency, and produce the requested output with only the references needed for this task."
