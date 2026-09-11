@@ -14,8 +14,11 @@ The committed product reference remains the source of truth for appliance geomet
 flow-appliance-001/
 ├── README.md
 ├── prompts/
+│   ├── v01.md
+│   ├── v02.md
 │   └── v03-clip-2.md
 ├── qa/
+│   ├── v01.md
 │   ├── v02.md
 │   └── v03.md
 ├── reference-product.jpg
@@ -47,14 +50,17 @@ targeted continuation-state repair
 → PASS
 ```
 
-## QA
-
-- [V02 QA](qa/v02.md)
-- [V03 QA](qa/v03.md)
-
 ## Prompts
 
-- [V03 clip 2 repair prompt](prompts/v03-clip-2.md)
+- [V01 original prompt](prompts/v01.md)
+- [V02 2×8-second repair prompt](prompts/v02.md)
+- [V03 clip 2 targeted repair prompt](prompts/v03-clip-2.md)
+
+## QA
+
+- [V01 QA](qa/v01.md)
+- [V02 QA](qa/v02.md)
+- [V03 QA](qa/v03.md)
 
 ## Media
 
