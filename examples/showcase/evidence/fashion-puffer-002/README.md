@@ -14,8 +14,13 @@ The supplied product/reference image is the visual source of truth for color, qu
 fashion-puffer-002/
 ├── README.md
 ├── prompts/
+│   ├── v01.md
+│   ├── v02.md
+│   ├── v03.md
+│   ├── v04.md
 │   └── v05.md
 └── qa/
+    ├── v01.md
     ├── v02.md
     ├── v03.md
     └── v04.md
@@ -47,15 +52,20 @@ true start-frame / image-to-video test
 → pending
 ```
 
+## Prompts
+
+- [V01 original prompt](prompts/v01.md)
+- [V02 safe partial-state repair](prompts/v02.md)
+- [V03 dedicated sleeve-insertion repair](prompts/v03.md)
+- [V04 reference-conditioned test](prompts/v04.md)
+- [V05 true start-frame test](prompts/v05.md)
+
 ## QA
 
+- [V01 QA](qa/v01.md)
 - [V02 QA](qa/v02.md)
 - [V03 QA](qa/v03.md)
 - [V04 QA](qa/v04.md)
-
-## Prompts
-
-- [V05 prompt](prompts/v05.md)
 
 ## Canonical case
 
