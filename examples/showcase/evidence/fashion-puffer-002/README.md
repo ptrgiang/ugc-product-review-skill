@@ -13,6 +13,7 @@ A navy quilted puffer jacket reference image was supplied for this case.
 
 - `v02-qa.md` — QA for V02 Clip 1: partial-state repair still skipped the physical try-on action via a temporal discontinuity.
 - `v03-qa.md` — QA for V03 Clip 1: dedicated single-action repair still failed because the requested partial-worn opening state collapsed to a fully worn state.
+- `v04-qa.md` — QA for V04 Clip 1: visual conditioning still failed to preserve the requested partial-worn opening state and the model reconstructed its own dressing sequence.
 - Canonical case file: `examples/showcase/fashion-puffer-fit-proof.md`
 
 ## V01 generation status
@@ -76,14 +77,24 @@ This indicates that the partial-worn state itself is unstable under text-only pr
 
 Detailed QA: `v03-qa.md`
 
-## Current hypothesis
+## V04 result
 
-The failure progression is now:
+Status: **failed — P1 Major**
+
+V04 changed the experiment from text-only prompting to visual conditioning. The intended opening state was one arm already inserted, the opposite sleeve clearly empty, and the opposite arm fully outside the jacket.
+
+The generated output still did not preserve that state. Instead, the model began from an earlier unworn / loosely draped state, reconstructed part of the dressing sequence, substituted sleeve/front-panel adjustment for the exact requested insertion, and only later reached a fully worn state.
+
+The important finding is that **reference-image conditioning is not equivalent to literal first-frame conditioning** in the tested workflow.
+
+Detailed QA: `v04-qa.md`
+
+## Current failure progression
 
 ```text
 V01
 full dressing interaction
-→ physical/morph failure
+→ physical / morph failure
 
 V02
 reduced partial try-on after a cut
@@ -92,41 +103,50 @@ reduced partial try-on after a cut
 V03
 single action from text-defined partial state
 → opening-state collapse to fully worn
+
+V04
+visual/reference-conditioned partial state
+→ reference state not preserved; model reconstructs earlier dressing sequence
 ```
 
-The case has therefore moved from a general interaction-complexity problem toward an **intermediate-state representation failure**.
+The case has progressed from a general interaction-complexity problem to a more specific **state-representation and conditioning-mode problem**.
 
-## V04 test direction
+## V05 test direction
 
-V04 should test **visual start-frame conditioning** instead of another text-only repair.
+V05 should test **literal first-frame image-to-video conditioning**, not general reference-image conditioning.
 
-Supply a reference/start frame that already shows the exact intended intermediate state:
+The supplied still must be the actual first frame of the generated video and already show:
 
 ```text
 right arm fully inserted
 right hand outside cuff
-right shoulder loaded correctly
+right shoulder seated correctly
 left sleeve visibly empty
 left arm clearly outside jacket
 jacket open
 product geometry matching reference
 ```
 
-Then ask the model to perform only one motion:
+Then the generation prompt should describe only the forward motion:
 
 ```text
-preserve supplied start state
-→ slowly insert left arm into visible left sleeve
-→ left hand emerges from cuff
+preserve frame 1 exactly
+→ left hand enters visible empty sleeve
+→ forearm travels through sleeve
+→ hand emerges from cuff
 → jacket settles
-→ hold completed state
+→ hold final state
 ```
+
+Do not describe how the creator reached the partial state. The generation model should animate from it, not recreate it.
+
+If the workflow cannot guarantee the supplied image is literal frame 1, classify the sleeve-insertion interaction as **unreliable for production** in that workflow.
 
 ## Evidence status
 
 The case remains **in repair testing** and is not yet validated.
 
-The canonical case narrative and V04 proposal live in:
+The canonical case narrative and V05 proposal live in:
 
 `examples/showcase/fashion-puffer-fit-proof.md`
 
