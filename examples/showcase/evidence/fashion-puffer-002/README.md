@@ -14,6 +14,7 @@ A navy quilted puffer jacket reference image was supplied for this case.
 - `v02-qa.md` — QA for V02 Clip 1: partial-state repair still skipped the physical try-on action via a temporal discontinuity.
 - `v03-qa.md` — QA for V03 Clip 1: dedicated single-action repair still failed because the requested partial-worn opening state collapsed to a fully worn state.
 - `v04-qa.md` — QA for V04 Clip 1: visual conditioning still failed to preserve the requested partial-worn opening state and the model reconstructed its own dressing sequence.
+- `v05-prompt.md` — next diagnostic test: literal first-frame image-to-video conditioning with only one forward sleeve-insertion action.
 - Canonical case file: `examples/showcase/fashion-puffer-fit-proof.md`
 
 ## V01 generation status
@@ -113,7 +114,7 @@ The case has progressed from a general interaction-complexity problem to a more 
 
 ## V05 test direction
 
-V05 should test **literal first-frame image-to-video conditioning**, not general reference-image conditioning.
+V05 tests **literal first-frame image-to-video conditioning**, not general reference-image conditioning.
 
 The supplied still must be the actual first frame of the generated video and already show:
 
@@ -127,7 +128,7 @@ jacket open
 product geometry matching reference
 ```
 
-Then the generation prompt should describe only the forward motion:
+Then the model should perform only this forward action:
 
 ```text
 preserve frame 1 exactly
@@ -138,16 +139,14 @@ preserve frame 1 exactly
 → hold final state
 ```
 
-Do not describe how the creator reached the partial state. The generation model should animate from it, not recreate it.
+Do not describe or regenerate the history before frame 1.
 
-If the workflow cannot guarantee the supplied image is literal frame 1, classify the sleeve-insertion interaction as **unreliable for production** in that workflow.
+Full V05 test prompt: `v05-prompt.md`
+
+If the workflow cannot guarantee the supplied image is literal frame 1, classify that run as invalid for the V05 experiment. If a true literal-first-frame V05 still fails, classify the sleeve-insertion interaction as **unreliable for production** in the tested model-workflow combination.
 
 ## Evidence status
 
 The case remains **in repair testing** and is not yet validated.
 
-The canonical case narrative and V05 proposal live in:
-
-`examples/showcase/fashion-puffer-fit-proof.md`
-
-Detailed generation QA is intentionally kept in this evidence directory, matching the organization used by Showcase #1.
+Detailed QA and the next diagnostic prompt are intentionally kept in this evidence directory, matching the organization used by Showcase #1.
