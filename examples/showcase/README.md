@@ -64,6 +64,26 @@ https://github.com/user-attachments/assets/b286e7c8-c2ea-4385-b421-6044d13a2cc9
 - [Open the full case →](appliance-multistate-google-flow.md)
 - [Open the evidence bundle →](evidence/flow-appliance-001/README.md)
 
+## In-progress case
+
+### FASHION-PUFFER-002 — Navy quilted puffer jacket / fit-proof UGC
+
+**Current status:** prompt set prepared; **awaiting real generation**.
+
+This case extends showcase coverage into fashion/wearables. It tests product geometry lock during handling and try-on, textile compression and drape, mirror continuity, fit readability, and concept diversity.
+
+The prompt set includes four distinct concepts:
+
+- buyer-doubt-led “does it look like the photos?” fit proof — recommended primary concept;
+- material + try-on proof;
+- skeptical → impressed review;
+- everyday routine / lifestyle review.
+
+No success claim or QA score is recorded yet because generated-video evidence does not exist for this case.
+
+- [Open Showcase #2 prompt set →](fashion-puffer-fit-proof.md)
+- [Open the evidence manifest →](evidence/fashion-puffer-002/README.md)
+
 ## Showcase standard
 
 Every case should make the evidence chain easy to scan:
