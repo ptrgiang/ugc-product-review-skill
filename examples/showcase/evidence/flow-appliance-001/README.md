@@ -6,22 +6,7 @@ Real-generation evidence for the first appliance multi-state Google Flow / Veo s
 
 **V01, V02, and V03 evidence are published. V03 targeted repair passed.**
 
-The evidence bundle contains:
-
-- [reference-product.jpg](reference-product.jpg) — product reference used by the case.
-- [v01-contact-sheet.jpg](v01-contact-sheet.jpg) — sampled frames across the original V01 outputs.
-- [v01-clip-1-preview.mp4](v01-clip-1-preview.mp4) — V01 setup / processing generation.
-- [v01-clip-2-preview.mp4](v01-clip-2-preview.mp4) — V01 reveal / verdict generation.
-- [v02-contact-sheet.jpg](v02-contact-sheet.jpg) — V02 sampled frames.
-- [v02-clip-1-preview.mp4](v02-clip-1-preview.mp4) — V02 ingredient proof → lid close → processing start.
-- [v02-clip-2-preview.mp4](v02-clip-2-preview.mp4) — V02 attempted post-processing reveal / verdict.
-- [v02-qa.md](v02-qa.md) — V02 QA and state-regression diagnosis.
-- [v03-contact-sheet.jpg](v03-contact-sheet.jpg) — V03 clip-2 sampled frames.
-- [v03-clip-2-preview.mp4](v03-clip-2-preview.mp4) — V03 targeted clip-2 regeneration.
-- [v03-clip-2-prompt.md](v03-clip-2-prompt.md) — prompt used for the targeted repair.
-- [v03-qa.md](v03-qa.md) — V03 QA and PASS decision.
-
-Media for V02 and V03 was uploaded manually at the intended quality. Do not silently replace showcase media with heavily compressed derivatives.
+The repository keeps the uploaded media files as evidence artifacts. GitHub user-attachment URLs are used below for inline video playback so readers can preview the generations directly in the README.
 
 ## Quick visual review
 
@@ -29,28 +14,50 @@ Media for V02 and V03 was uploaded manually at the intended quality. Do not sile
 
 ![Product reference](reference-product.jpg)
 
-### V01
+## V01 — Original generation
+
+### Clip 1 — setup / processing
+
+https://github.com/user-attachments/assets/71937adb-04bc-4c5a-8eb2-d10db02e70ea
+
+### Clip 2 — reveal / verdict
+
+https://github.com/user-attachments/assets/90213915-376f-4d0a-9afb-f6f9f1cb88e8
+
+### V01 contact sheet
 
 ![V01 contact sheet](v01-contact-sheet.jpg)
 
-- [Watch V01 clip 1 — setup / processing](v01-clip-1-preview.mp4)
-- [Watch V01 clip 2 — reveal / verdict](v01-clip-2-preview.mp4)
+V01 established usable product consistency, but the original story was too dense for the tested 8-second-per-generation workflow.
 
-### V02
+## V02 — Split-clip repair generation
+
+### Clip 1 — ingredient proof / start
+
+https://github.com/user-attachments/assets/aa72da59-b23f-47be-956e-db1ed5cb4193
+
+### Clip 2 — attempted result / verdict
+
+https://github.com/user-attachments/assets/1c47f50f-60c2-4bc7-acf0-50fa75b018b6
+
+### V02 contact sheet
 
 ![V02 contact sheet](v02-contact-sheet.jpg)
 
-- [Watch V02 clip 1 — ingredient proof / start](v02-clip-1-preview.mp4)
-- [Watch V02 clip 2 — attempted result / verdict](v02-clip-2-preview.mp4)
-- [Read V02 QA](v02-qa.md)
+[Read V02 QA](v02-qa.md)
 
 V02 validates the split-clip strategy but exposes a continuation-state regression in clip 2: the clip reintroduces coarse/raw ingredients before the reveal, then shows the processed result afterward.
 
-### V03
+## V03 — Targeted continuation-state repair
+
+### Clip 2 — repaired post-processing reveal
+
+https://github.com/user-attachments/assets/b286e7c8-c2ea-4385-b421-6044d13a2cc9
+
+### V03 contact sheet
 
 ![V03 contact sheet](v03-contact-sheet.jpg)
 
-- [Watch V03 clip 2 — targeted repair](v03-clip-2-preview.mp4)
 - [Read the V03 prompt](v03-clip-2-prompt.md)
 - [Read V03 QA](v03-qa.md)
 
@@ -79,11 +86,13 @@ PASS
 - Tested practical generation duration: 8 seconds per output
 - Prompt lineage: `V01 → V02 → V03 targeted clip-2 repair`
 - Evaluation result: V03 passed at `15 / 16`; no V04 required for the observed root cause
-- Media handling: preserve original-quality or intentionally chosen user uploads for showcase evidence
+- Media handling: preserve original-quality or intentionally chosen user uploads for showcase evidence; use user-attachment URLs for README playback
 
 ## Storage policy
 
 Preserve showcase evidence at a quality that remains useful for visual inspection. Avoid aggressive recompression merely to make repository uploads smaller.
+
+For README playback, prefer GitHub user-attachment URLs when available. Keep repository media files as the auditable evidence copy unless storage policy changes.
 
 If media size becomes unsuitable for normal Git history, prefer Git LFS or release assets while keeping stable links and lightweight derivatives only when explicitly desired.
 
