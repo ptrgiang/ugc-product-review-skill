@@ -1,6 +1,6 @@
 # Showcase #2: Navy quilted puffer jacket — fit-proof UGC
 
-Status: **awaiting generation — recompiled for native 8-second Veo clips**
+Status: **V01 QA completed — V02 integrated into the canonical case file**
 
 ## At a glance
 
@@ -8,41 +8,41 @@ Status: **awaiting generation — recompiled for native 8-second Veo clips**
 
 **Product/category:** Navy quilted puffer jacket / fashion
 
-**Workflow/model:** Google Flow / Veo, using the tested practical constraint of **8 seconds per generated clip**
+**Workflow/model:** Google Flow / Veo, using the practical constraint of **8 seconds per generated clip**
 
-**Creative angle:** Buyer-doubt-led fit proof with product inspection, try-on, mirror proof, and a natural verdict
+**Creative angle:** Buyer-doubt-led fit proof with product inspection, controlled try-on, mirror proof, and a natural verdict
 
 **Primary visual proof:** The jacket's real-world silhouette, puffiness, shoulder fit, length, and material behavior while handled and worn
 
-**Current result:** The original 12–13 second concepts have been recompiled into a native **2 × 8-second production plan** before first generation. No generated output is claimed yet.
+**Current result:** V01 was generated and QA'd. Clip 2 is substantially usable. Clip 1 failed in the dressing interaction and has been repaired into the **V02 prompt below**.
 
-**QA:** Pending real generation
+**QA:** V01 completed; V02 repair prompt ready
 
-## Why this case was recompiled before generation
+## Why this case uses native 8-second clips
 
-Showcase #1 established a practical production lesson for the tested Google Flow / Veo workflow: asking a single generation to carry a 12–13 second multi-state story creates unnecessary temporal pressure when the workflow returns 8-second clips.
+Showcase #1 established a practical production lesson for the tested Google Flow / Veo workflow: asking one generation to carry a long multi-state story creates unnecessary temporal pressure when the workflow practically returns 8-second clips.
 
-Showcase #2 therefore does **not** begin by testing an overlong prompt and repairing it afterward. It applies the validated lesson up front:
+Showcase #2 therefore uses a native **2 × 8-second** structure:
 
-- design natively for **2 × 8-second clips**;
-- give each clip one dominant physical objective;
-- repeat critical product and creator locks in each clip;
-- define the cross-clip state explicitly;
-- give clip 2 an **immutable opening state**;
-- forbid regression to the pre-worn garment state;
-- reserve stable screen time for the fit hero;
-- use a hard cut rather than a generated transition.
-
-The goal is not to copy the appliance case mechanically. The continuation-state rule is adapted to fashion: clip 2 must begin with the jacket **already fully worn**, rather than allowing the model to reconstruct the folded/held/partially worn state from clip 1.
+- clip 1 handles product proof and try-on progression;
+- clip 2 handles already-worn fit proof;
+- critical product and creator locks are repeated in each clip;
+- clip 2 uses an **immutable opening state**;
+- a hard cut is preferred over a risky generated transition.
 
 ## Evidence
 
-Product/reference input: a navy quilted puffer jacket reference image supplied for this case. Generated-video evidence will be added only after a real generation run.
+Product/reference input: a navy quilted puffer jacket reference image was supplied for this case.
+
+Generated-video evidence status:
+- V01 Clip 1: generated, QA failed during dressing interaction
+- V01 Clip 2: generated, substantially usable
+- V02 Clip 1: pending regeneration
 
 ## Exact ask
 
 ```text
-Create a realistic UGC fashion review for the navy quilted puffer jacket reference, optimized for the tested Google Flow / Veo workflow. Apply the lessons from the appliance showcase instead of forcing a 12–13 second story into one generation.
+Create a realistic UGC fashion review for the navy quilted puffer jacket reference, optimized for the tested Google Flow / Veo workflow. Prioritize reliable product fidelity, try-on realism, fit proof, and natural UGC behavior over flashy transitions.
 ```
 
 ## Agent route
@@ -53,16 +53,14 @@ core
 + categories/fashion
 + prompt-compiler
 + model-adapters
++ qa-and-repair
 ```
-
-`qa-and-repair` is not active yet because no real Showcase #2 output has been generated. It should be loaded only after V01 exists.
 
 ## Product/reference lock
 
 Use the supplied product reference as the visual authority in every clip.
 
 Preserve only visible or reliably supplied details:
-
 - deep navy color;
 - horizontal quilt geometry and panel spacing;
 - material finish and believable puffiness;
@@ -75,28 +73,11 @@ Preserve only visible or reliably supplied details:
 
 Do not invent logos, labels, buttons, trims, extra pockets, extra zippers, removable parts, or technical features.
 
-## Recommended concept — “Does it actually look like the photos?”
+---
 
-This remains the primary concept because it maps a common fashion buyer doubt directly to visible proof:
-
-```text
-BUYER DOUBT
-→ PRODUCT / MATERIAL PROOF
-→ TRY-ON
-→ HARD CUT / TIME ADVANCE
-→ ALREADY-WORN OPENING STATE
-→ FIT HERO
-→ DETAIL PROOF
-→ NATURAL VERDICT
-```
-
-The production unit is now **two independent 8-second generations**, not one 13-second generation.
-
-# V01 production plan — 2 × 8s
+# V01 production plan summary
 
 ## Shared continuity lock
-
-Apply this to both clips:
 
 ```text
 Use the supplied navy quilted puffer jacket reference as the exact product authority.
@@ -110,82 +91,206 @@ Do not redesign the jacket between clips. Do not add or remove garment details. 
 Natural home daylight. Vertical 9:16 smartphone footage. Slight human handheld imperfection or a simple static mirror-phone setup. No cinematic orbit, studio lighting, runway styling, slow motion, generated captions, or commercial end card.
 ```
 
-## CLIP 1 — BUYER DOUBT → MATERIAL PROOF → TRY-ON START
+## V01 outcome
 
-**Dominant physical objective:** establish the real garment, then begin a believable try-on without also forcing the fit payoff into the same generation.
+- **Clip 1:** failed during the full dressing motion
+- **Clip 2:** substantially usable and should be preserved by default
+
+---
+
+# V01 QA
+
+## Diagnosis
+
+The main defect is in Clip 1 during the jacket-donning sequence. The transition from holding the garment to wearing it does not remain physically continuous. The jacket appears to partially morph or snap onto the creator instead of following a believable sequence of arm insertion, shoulder loading, fabric tension, and garment settling.
+
+The most fragile moment occurs during the multi-limb interaction: both arms, both sleeves, shoulder movement, flexible quilted fabric, occlusion, and product geometry must all remain coherent at once. The generated sequence takes a shortcut and changes garment/body state too quickly.
+
+Clip 2 preserves the worn fit much more successfully and should be preserved rather than regenerated by default.
+
+## Severity
+
+`P1 — Major`
+
+## Error tags
+
+```text
+HIGH_INTERACTION_RISK
+FABRIC_PHYSICS
+BODY_MECHANICS_ERROR
+STATE_DISCONTINUITY
+CONTACT_ERROR
+PRODUCT_MORPH   # minor / localized
+```
+
+## Root cause
+
+V01 Clip 1 asks Veo to solve a full outerwear dressing transition inside a short shot:
+
+```text
+held garment
++ first arm insertion
++ second arm insertion
++ shoulder rotation
++ flexible fabric deformation
++ occlusion
++ garment geometry continuity
+```
+
+The action contains too many simultaneous constraints. Product-lock language alone cannot reliably fix this because the failure is primarily an **interaction-complexity problem**.
+
+## Repair strategy
+
+Do not strengthen the full dressing prompt indefinitely. Reduce the number of simultaneous constraints.
+
+Replace the full dressing motion with a safer partial-state transition:
+
+```text
+held
+→ hard cut
+→ right arm already fully inserted
+→ left arm slides through left sleeve
+→ both arms inserted
+→ one small settling tug
+→ worn state
+```
+
+This intentionally removes the highest-risk part of the action while preserving the visual idea of a real try-on.
+
+---
+
+# Current canonical prompt set — V02
+
+Only **Clip 1 requires regeneration** by default. Keep V01 Clip 2 if product fidelity, creator continuity, mirror geometry, fit proof, and pacing remain acceptable.
+
+## Shared product lock
+
+```text
+Use the supplied navy quilted puffer jacket reference as the exact product authority.
+
+Keep the exact same deep navy color, horizontal quilting geometry, panel spacing, material finish, believable puffiness, stand collar, centered front zipper, sleeves, cuffs, hem, visible pocket placement, jacket length, scale, and overall silhouette.
+
+Do not redesign or simplify the garment. Do not add or remove logos, labels, pockets, zippers, buttons, trims, panels, or technical features.
+
+Keep the same creator identity, face, hair, complexion, body proportions, base outfit, room, daylight direction, and casual smartphone UGC character established by V01 whenever a V01 continuity reference is supplied.
+```
+
+## V02 CLIP 1 — MATERIAL PROOF → CONTROLLED PARTIAL TRY-ON
 
 ```text
 TITLE
-Navy Puffer Fit Review — V01 Clip 1 — Product Proof and Try-On
+Navy Puffer Fit Review — V02 Clip 1 — Safe Try-On Repair
 
 OBJECTIVE
-Create one 8-second vertical 9:16 realistic smartphone UGC clip. The creator is casually checking whether the jacket will look as good in real life as it does in the product reference.
+Create one 8-second vertical 9:16 realistic smartphone UGC clip using the exact navy quilted puffer jacket from the supplied product reference.
+
+This is a repair of V01 Clip 1. The goal is to preserve the successful product inspection and casual fashion-review feeling while replacing the unstable full dressing motion with one controlled, physically readable sleeve-insertion action.
 
 PRODUCT LOCK
-Use the supplied navy quilted jacket reference as the exact authority. Preserve its deep navy color, horizontal quilt pattern, panel spacing, material finish, puffiness, stand collar, centered zipper, sleeves, cuffs, hem, visible pockets, length, and proportions. Do not invent garment details.
+Preserve exactly the reference jacket's deep navy color, horizontal quilt pattern and panel spacing, material finish, puffiness, stand collar, centered zipper, sleeves, cuffs, hem, visible pockets, jacket length, proportions, and silhouette.
+
+The garment must remain the same physical object throughout the clip. No garment redesign, resizing, changing quilt layout, changing sleeve length, zipper relocation, collar change, color drift, or sudden change in puffiness.
 
 CREATOR / ENVIRONMENT
-Use one creator in an ordinary bright bedroom or dressing area with a mirror nearby. Natural daylight, relaxed body language, normal base outfit, no commercial-model posing. Keep creator identity and base outfit stable for the continuation clip.
+Use the same creator and ordinary bright bedroom or dressing-area character as V01 when a continuity reference is available. Natural home daylight. Relaxed body language. Vertical smartphone footage with very slight handheld imperfection. No commercial-model posing, cinematic orbit, studio light, slow motion, generated captions, or end card.
 
-0:00–0:02 — BUYER-DOUBT HOOK
-Begin with the creator holding the jacket naturally against or beside her torso so both the garment and its overall shape are readable.
+0:00–0:02 — MATERIAL / FIRST-IMPRESSION PROOF
+The creator holds the jacket naturally in front of her torso. She lightly compresses one quilted front panel once between her fingers and releases it.
 
-She says in a casual, observational tone:
-“I wanted to see if this actually looked like the pictures.”
+The fabric compresses and recovers naturally. Keep the quilt geometry, thickness, color, and garment shape unchanged.
 
-0:02–0:04 — MATERIAL / SHAPE PROOF
-Hard cut to a closer handheld view. She lightly compresses one quilted panel between her fingers, releases it, then lets the jacket hang naturally from one hand.
+Optional restrained dialogue:
+“Wait, this actually feels nicer than I expected.”
 
-Show realistic fabric compression, recovery, gravity, and drape. Do not make the jacket inflate, float, stiffen, or change quilting.
+0:02–0:03.8 — SIMPLE DETAIL CHECK
+Hard cut slightly closer. One hand stabilizes the jacket while the other runs once along the quilted front panel and briefly checks the collar or zipper area.
 
-No dialogue.
+Keep the hand interaction simple. Correct hand-to-fabric contact. No crossing hands and no finger-level choreography.
 
-0:04–0:08 — TRY-ON START
-Hard cut. She begins putting on the exact same jacket with one simple physically plausible sequence: first arm into one sleeve, then the second arm begins entering the other sleeve.
+0:03.8–0:04.1 — HARD CUT / TIME ADVANCE
+Do not show the beginning of the full dressing motion.
 
-Do not require the clip to finish with a perfect styled pose. Prioritize believable shoulder, sleeve, cuff, hem, and fabric movement during dressing.
+The cut intentionally skips the highest-risk part of putting on the jacket.
 
-End during or just after the natural completion of the dressing action. Do not include the final fit verdict yet.
+0:04.1–0:06.8 — CONTROLLED TRY-ON — CRITICAL
+The shot begins with the jacket ALREADY PARTIALLY WORN.
+
+At the first frame after the cut:
+- the creator's RIGHT arm is already fully inside the correct right sleeve;
+- the right hand has naturally emerged from the right cuff;
+- the right shoulder seam is already resting correctly on the right shoulder;
+- the right side of the jacket hangs naturally from the body;
+- the LEFT sleeve is still empty and remains visibly attached to the correct left shoulder seam;
+- the jacket remains open at the front and the centered zipper stays correctly aligned;
+- garment scale, length, quilting, collar, cuffs, pockets, and hem already match the product reference.
+
+Only ONE major dressing action happens in this shot:
+
+The creator slowly slides her LEFT arm into the existing left sleeve.
+
+The left arm and hand must travel continuously through the sleeve path. The left hand emerges naturally from the left cuff at the end of the insertion. The left sleeve must remain continuously attached to the left shoulder seam. Preserve realistic cloth tension, bending, gravity, and mild folds around the elbow and shoulder.
+
+The creator may use the right hand only to lightly stabilize the left shoulder/opening area. Do not create complicated two-hand choreography.
+
+Keep the camera almost static during this interaction.
+
+FORBIDDEN DURING THE INSERTION
+- no jacket teleporting onto the torso
+- no instant wardrobe transformation
+- no sleeve swapping sides
+- no sleeve detaching from the shoulder
+- no sleeve changing length
+- no arm passing through fabric
+- no hand appearing outside the physical sleeve path
+- no duplicated arms or hands
+- no quilt-pattern change
+- no zipper relocation
+- no garment resizing
+- no jacket snapping suddenly into a fully worn state
+- no camera orbit or fast reframing
+
+0:06.8–0:08 — SETTLE THE GARMENT
+After both hands are naturally outside the cuffs, the creator makes one small downward tug on the two front panels so the jacket settles on both shoulders.
+
+She briefly looks down at the fit, then back toward the phone with a restrained approving expression.
+
+Optional short reaction:
+“Okay... the fit is actually good.”
+
+Do not zip the jacket during this clip. Do not add another complex interaction.
 
 AUDIO
-Quiet room tone, natural clothing rustle, and the opening spoken hook. No dramatic music.
-
-PHYSICS / REALISM
-Correct hand-to-fabric contact. Natural garment weight. Quilted panels compress where held. Sleeves bend with the arms. No cloth clipping into the body, duplicated limbs, deformed fingers, instant wardrobe transformation, or fabric morphing.
+Quiet room ambience, subtle realistic clothing rustle, and only the short dialogue above if used. Do not place extra dialogue over the fragile sleeve-insertion action.
 
 END-STATE CONTRACT
-By the end of this clip, the try-on action has occurred. The next clip takes place moments later after the jacket is fully settled on the same creator.
+At the end of V02 Clip 1:
+- both arms are fully inside the correct sleeves;
+- both hands are naturally outside the cuffs;
+- the jacket is correctly settled on the shoulders;
+- the jacket remains open and geometrically identical to the product reference;
+- the creator, base outfit, room, and lighting remain suitable for the existing fit-proof Clip 2.
+
+PASS CONDITION
+The repair passes only if the transition from the partial starting state to both arms inserted is visually continuous and physically readable without garment morphing, sleeve/body intersection, or a sudden state jump.
 ```
 
-## State handoff
+## V01 / V02 CLIP 2 — ALREADY-WORN FIT PROOF
 
-Clip 1 establishes:
+If V01 Clip 2 remains visually acceptable, **reuse it unchanged**.
 
-```text
-same creator
-+ same base outfit
-+ same navy jacket
-+ same room / mirror
-+ try-on has occurred
-```
-
-Clip 2 must **not replay or reconstruct** the held, folded, or partially worn state. It begins after the dressing action is complete.
-
-## CLIP 2 — IMMUTABLE WORN STATE → FIT HERO → NATURAL VERDICT
-
-**Dominant physical objective:** prove how the jacket actually fits when worn.
+If Clip 2 must be regenerated for an unrelated issue, use the following prompt unchanged.
 
 ```text
 TITLE
-Navy Puffer Fit Review — V01 Clip 2 — Already-Worn Fit Proof
+Navy Puffer Fit Review — Clip 2 — Already-Worn Fit Proof
 
 OBJECTIVE
-Create one 8-second vertical 9:16 realistic smartphone UGC continuation clip. The try-on shown in clip 1 has already finished before this clip begins. The only major goal is to give the viewer enough stable visual evidence to judge the jacket's real-world fit.
+Create one 8-second vertical 9:16 realistic smartphone UGC continuation clip. The try-on has already finished before this clip begins. The only major goal is to give the viewer enough stable visual evidence to judge the jacket's real-world fit.
 
 REFERENCE PRIORITY
 1. The original supplied product reference is the authority for garment geometry, color, quilting, collar, zipper, pockets, material, length, and proportions.
 2. Clip 1 is the continuity reference for creator identity, hair, complexion, body proportions, base outfit, room, mirror, daylight, and casual phone-camera character.
-If clip 1 conflicts with the original garment reference, preserve the original garment reference.
+If Clip 1 conflicts with the original garment reference, preserve the original garment reference.
 
 IMMUTABLE OPENING STATE — CRITICAL
 The dressing action has already fully completed before frame 1.
@@ -240,154 +345,29 @@ The clip only passes if the jacket is already fully and correctly worn from the 
 
 ## Edit assembly
 
-Join the two generated outputs with a simple hard cut:
-
 ```text
-Clip 1 buyer doubt
-→ material proof
-→ try-on begins / completes
-→ hard cut forward a few moments
-→ Clip 2 already-worn fit hero
+V02 Clip 1 material proof
+→ hard cut
+→ partial-state one-arm insertion
+→ garment settles
+→ hard cut
+→ preserved V01 Clip 2 already-worn fit hero
 → detail proof
-→ restrained verdict
+→ verdict
 ```
-
-The cut intentionally skips unimportant dressing time. It should read as a normal creator edit, not as missing continuity.
 
 Do not ask Veo to generate a transition effect between clips. Do not add a morph, whip transition, flash, or outfit-change effect.
 
-A minimal audio cut is acceptable. Captions, if needed for publishing, should be added in post rather than generated in-scene.
+## Generalized lesson from this case
 
-## Why this is safer than the original 13-second prompt
+Outerwear dressing should be treated as a **high-interaction-risk transition**.
 
-The previous prompt asked one generation to handle:
+When a shot requires multiple limbs, multiple flexible openings, occlusion, precise contact, changing body pose, and garment geometry at the same time, prefer a stable partial starting state and one major interaction per shot. A hard cut between believable states is preferable to an impressive but physically broken continuous transition.
 
-```text
-hook
-+ product inspection
-+ full dressing interaction
-+ mirror transition
-+ fit hero
-+ detail proof
-+ verdict
-```
-
-The recompiled version separates the two fragile responsibilities:
-
-```text
-CLIP 1 = garment handling + dressing physics
-CLIP 2 = already-worn garment continuity + fit proof
-```
-
-This reduces simultaneous demands on hands, fabric simulation, mirror geometry, creator continuity, timing, and dialogue.
-
-## V01 pass criteria
-
-The first generation should be considered successful only if:
-
-- both clips preserve the same jacket geometry, color, quilting, material character, and scale;
-- the creator identity and base outfit remain coherent across clips;
-- clip 1 shows physically plausible garment handling and dressing;
-- clip 2 begins with the jacket already fully worn, with no regression to an earlier state;
-- the mirror does not create a duplicate, mismatched, or redesigned jacket;
-- the fit hero receives at least about 2 seconds of stable readable screen time before dialogue competes with it;
-- fabric weight, puffiness, compression, sleeve movement, and hem movement remain plausible;
-- the creator reaction stays observational rather than commercial;
-- the hard cut feels like a normal UGC edit.
-
-## Alternative 8-second concepts
-
-These are intentionally **standalone 8-second tests**, not compressed 12-second stories. They are useful if the primary 2-clip concept succeeds and the showcase needs broader fashion coverage.
-
-### Alternative A — Material proof only
-
-```text
-Create one 8-second vertical realistic smartphone UGC clip using the exact navy quilted jacket reference.
-
-0:00–0:02 — close material hook: creator compresses one quilted panel and says, “Okay, this feels way nicer than I expected.”
-0:02–0:05 — inspect zipper, collar, stitching, and fabric with simple hand movements.
-0:05–0:08 — let the jacket hang naturally and lightly flex one sleeve to show weight and structure.
-
-Do not include a try-on or mirror shot. This clip has one job: prove material behavior and construction visually.
-
-Preserve exact color, quilt geometry, collar, zipper, cuffs, hem, pockets, proportions, and material. Natural daylight, phone-camera realism, ordinary room ambience, realistic hands and gravity. No product morphing, extra features, captions, cinematic camera movement, or commercial posing.
-```
-
-### Alternative B — Already-worn skeptical fit test
-
-```text
-Create one 8-second vertical realistic smartphone UGC mirror-review clip using the exact navy quilted jacket reference.
-
-The jacket is already fully worn from frame 1. This state is immutable.
-
-0:00–0:02 — creator looks at the side silhouette and says, “I thought this was gonna look really bulky.”
-0:02–0:06 — stable fit proof: one small front-to-side turn, showing shoulder volume, torso silhouette, and length.
-0:06–0:08 — creator lightly touches the collar and says, “Wait... this is actually really flattering.”
-
-No dressing sequence. No jacket-in-hand state. No transition effect. Preserve exact garment geometry and mirror continuity. Natural restrained performance, no thumbs-up or runway pose.
-```
-
-### Alternative C — Everyday routine fit proof
-
-```text
-Create one 8-second vertical realistic smartphone UGC lifestyle clip with the exact navy quilted jacket already fully worn from frame 1.
-
-0:00–0:02 — creator checks the fit in a hallway mirror and says, “Okay... this outfit is actually working.”
-0:02–0:05 — she adjusts the existing collar or zipper once while the silhouette remains readable.
-0:05–0:08 — she picks up keys and takes one or two natural steps toward the door while the jacket moves realistically with her body.
-
-One physical objective: demonstrate the jacket during normal worn movement. No dressing sequence, no product reset, no cinematic tracking, no commercial end pose, no invented garment details.
-```
-
-## What this case is intended to test
-
-Showcase #2 now tests whether the lessons from the completed appliance lifecycle transfer to a different physical domain:
-
-1. whether native clip-duration planning improves generation reliability before a failure occurs;
-2. whether explicit continuation contracts prevent fashion-state regression;
-3. whether separating dressing physics from mirror-fit proof improves garment fidelity;
-4. whether a stable hero hold gives enough time to judge silhouette and fit;
-5. whether garment and creator continuity survive a hard-cut multi-clip workflow;
-6. whether the skill can adapt a reusable production rule without blindly copying category-specific appliance logic.
-
-## Expected failure classes to watch
-
-Do not assume these will occur; use them only if visible in the real output:
-
-```text
-PRODUCT_MORPH
-COLOR_DRIFT
-SCALE_DRIFT
-STATE_DISCONTINUITY
-IDENTITY_DRIFT
-HAND_DEFORMATION
-GRIP_ERROR
-FABRIC_PHYSICS
-BODY_MECHANICS_ERROR
-HERO_MOMENT_TOO_FAST
-TOO_CINEMATIC
-TOO_COMMERCIAL
-PACING_ERROR
-```
-
-For this fashion case, also record plain-language observations for mirror mismatch, cloth-body clipping, changing quilt geometry, or implausible puffiness even when a dedicated taxonomy tag does not exist.
+The try-on process is usually not the hero proof. For fashion review content, the viewer ultimately needs reliable evidence of material, silhouette, fit, and movement. Generation reliability should therefore outrank showing every intermediate dressing step.
 
 ## Next step
 
-Generate **V01 Clip 1** and **V01 Clip 2** separately using the same original jacket reference.
-
-For Clip 2, use Clip 1 only as a creator/environment continuity reference; the original product image remains the higher-priority garment authority.
-
-After both real outputs exist:
-
-```text
-GENERATE V01 CLIP 1 + CLIP 2
-→ REVIEW EACH CLIP
-→ REVIEW CROSS-CLIP CONTINUITY
-→ SCORE QA
-→ CLASSIFY ROOT CAUSE
-→ REPAIR ONLY THE FAILED CLIP / FAILED CONTRACT
-→ REGENERATE
-```
-
-Do not rewrite both clips automatically if only one fails. Preserve the successful clip and make the smallest targeted repair, following the same controlled-repair principle validated by Showcase #1.
+- Regenerate **Clip 1** using the V02 prompt above.
+- Reuse **V01 Clip 2** unless a separate defect is found.
+- After regeneration, QA only the repaired clip first before widening scope.
