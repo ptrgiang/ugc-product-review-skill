@@ -1,134 +1,107 @@
-# Showcase: <case title>
+# Showcase case template
 
-Status: **awaiting generation | reviewed | repaired | validated**
+Use this template for every new real-generation showcase case.
 
-## At a glance
+## Canonical case file
 
-**Case ID:** `<CASE-ID>`
-
-**Product/category:** `<product / category>`
-
-**Workflow/model:** `<generation workflow>`
-
-**Creative angle:** `<angle>`
-
-**Primary visual proof:** `<what must visibly convince the viewer>`
-
-**Current result:** `<one-sentence outcome>`
-
-**QA:** `<score / scale>`
-
-## Evidence
-
-Place lightweight browsing assets under:
+Create one top-level narrative file:
 
 ```text
-evidence/<case-id>/
+examples/showcase/<case-slug>.md
 ```
 
-Recommended:
+It should contain:
+- case ID
+- product/category
+- model/workflow
+- creative objective
+- reference/product lock
+- lifecycle summary
+- the important prompt evolution
+- concise QA conclusions
+- generalized lesson
+- current next step
 
-- product/reference preview
-- contact sheet or representative generated still
-- lightweight generated-video preview(s)
-- evidence README with provenance
+Do not use the canonical case file as a dumping ground for every QA report or every prompt revision.
 
-Do not claim a real-generation result without actual output evidence.
+## Evidence bundle
 
-## Exact ask
+Create:
 
 ```text
-<user request or normalized test brief>
+examples/showcase/evidence/<case-id>/
+├── README.md
+├── prompts/
+├── qa/
+└── <media evidence>
 ```
 
-## Agent route
+### `README.md`
+Use as the evidence/lifecycle index. Record:
+- reference input status
+- generated versions
+- current pass/fail state
+- links to prompts and QA
+- preserved outputs
+- current experiment direction
+
+### `prompts/`
+Store only generation-ready or repair prompts.
+
+Naming:
 
 ```text
-core
-+ <strategy/category/compiler/adapter/qa modules actually used>
+v01.md
+v02.md
+v03-clip-2.md
+v05-start-frame.md
 ```
 
-Explain only routing choices that materially affect reproducibility.
+### `qa/`
+Store only QA reports and diagnosis.
 
-## Product/reference lock
-
-Record only visible or reliably supplied facts. Do not invent features to make the showcase look more complete.
-
-## Prompt V01
+Naming:
 
 ```text
-<exact generation-ready prompt>
+v01.md
+v02.md
+v03.md
 ```
 
-## Real-generation result — V01
+Each QA file should contain:
+- verdict / severity
+- evidence reviewed
+- scores when useful
+- observed failure
+- error tags
+- root cause
+- what improved
+- repair direction
 
-**Generation date:** `<YYYY-MM-DD>`
-
-**Workflow/model shown:** `<value>`
-
-**Generation duration/settings:** `<value>`
-
-**Post-processing:** `<none / exact edits>`
-
-### QA
-
-| Dimension | Score | Observation |
-| --- | ---: | --- |
-| Product fidelity |  |  |
-| Creator continuity |  |  |
-| Physical plausibility |  |  |
-| Hand quality |  |  |
-| State continuity |  |  |
-| Hero clarity |  |  |
-| UGC realism |  |  |
-| Prompt adherence |  |  |
-| **Total** |  |  |
-
-### What worked
-
-- ...
-
-### What failed
-
-- ...
-
-### Failure tags
-
-- `...`
-
-## Root cause
-
-Identify the production/prompt cause, not just the visible symptom.
-
-## Minimal repair
-
-State what changes and what must remain untouched.
-
-### Preserve
-
-- ...
-
-### Change
-
-- ...
-
-## Prompt V02
+### Media evidence
+Keep reference images, generated previews, and contact sheets directly in the case evidence directory:
 
 ```text
-<only the revised production prompt needed for regeneration>
+reference-product.jpg
+v02-clip-1-preview.mp4
+v02-clip-2-preview.mp4
+v02-contact-sheet.jpg
 ```
 
-## V01 → V02 comparison
+This keeps media URLs short and stable while separating prose artifacts into `prompts/` and `qa/`.
 
-Fill only after real V02 generation.
+## Lifecycle rule
 
-| Dimension | V01 | V02 | Change |
-| --- | ---: | ---: | --- |
-| Product fidelity |  |  |  |
-| Hero clarity |  |  |  |
-| UGC realism |  |  |  |
-| State continuity |  |  |  |
+```text
+prompt
+→ generation
+→ qa
+→ targeted repair prompt
+→ regeneration
+```
 
-## Production lesson
+Never create an isolated `vXX-prompt.md` beside QA/media files. Never store QA inside a prompt file. If a version has both, it gets one file under `prompts/` and one under `qa/`.
 
-Record only a lesson supported by this case. If the lesson is general enough to change the reusable skill, link the commit that updates the relevant reference module.
+## Promotion rule
+
+A showcase can be presented as validated only when real generation evidence exists and the relevant QA has passed. Otherwise mark it explicitly as `in repair testing`, `pending generation`, or `failed`.
