@@ -48,6 +48,7 @@ Product:
 - CONTROL_LAYOUT_ERROR
 - SCALE_DRIFT
 - STATE_DISCONTINUITY
+- NO_CAUSAL_TRANSITION
 
 Creator:
 - IDENTITY_DRIFT
@@ -100,6 +101,20 @@ PRODUCT_MORPH may come from:
 
 Repair the cause.
 
+For continuation clips, distinguish:
+
+```text
+visual similarity problem
+```
+
+from:
+
+```text
+causal state problem
+```
+
+A clip can match the same product, creator, and environment while still starting from the wrong product state.
+
 ## 5. Targeted repair rules
 
 ### Product fidelity
@@ -127,6 +142,40 @@ Repair the cause.
 - state support/contact points
 - slow action
 - separate setup/action/result
+
+### State discontinuity / no causal transition
+
+Use when a continuation clip starts in the wrong state, regresses to an earlier state, or makes a result appear during an unrelated action.
+
+Typical symptoms:
+- raw ingredients reappear in a post-processing reveal clip;
+- a clean surface becomes dirty again before the result shot;
+- a product returns to a sealed/pre-use state after an earlier clip already advanced the sequence;
+- the result appears only when a lid, door, package, or hand moves, even though the transformation should already have happened off-screen.
+
+Likely root causes:
+- opening state is implied rather than explicit;
+- continuity anchor describes appearance but not state;
+- prompt says “continue after X” without defining frame 1;
+- earlier states are not explicitly forbidden;
+- too many state changes remain inside the continuation clip.
+
+Repair:
+- preserve the previous continuity anchor;
+- define an **immutable opening state** before the timeline;
+- state what happened before frame 1;
+- forbid regression to previous states;
+- explicitly state that reveal actions do not cause the already-completed transformation;
+- regenerate only the failed continuation clip when the previous clip is already good.
+
+Example:
+
+```text
+This clip begins immediately after processing has fully finished.
+At frame 1, the finished result already exists under the closed lid.
+Do not show raw or partially processed ingredients anywhere in this clip.
+Opening the lid only reveals the result; it does not cause the transformation.
+```
 
 ### Too commercial
 Reduce:
@@ -156,7 +205,22 @@ Try:
 - reduce camera movement
 - simplify surrounding action
 
-## 6. Repair output
+## 6. Repair scope
+
+Prefer the smallest repair that targets the diagnosed root cause.
+
+If clip 1 passes and clip 2 fails, do not regenerate both by default.
+
+Preserve:
+- already-correct product identity
+- already-correct creator identity
+- already-correct environment
+- successful earlier clips
+- successful hook/proof structure
+
+Change only the variable responsible for the failure when practical.
+
+## 7. Repair output
 
 Return:
 
@@ -177,3 +241,11 @@ Only affected section unless full rewrite is necessary.
 
 ### Preserve
 State what should remain unchanged.
+
+## 8. Evidence-backed repair note
+
+In a real multi-clip appliance test, a continuation clip matched the product reasonably well but regressed from a finished state back to raw ingredients before the reveal. Rewriting the full sequence was unnecessary.
+
+The successful repair kept the first clip unchanged and modified the continuation prompt with one major addition: an immutable opening-state contract plus forbidden regressions. The next generation began with the result already complete and revealed that same state correctly.
+
+Generalized lesson: **when identity continuity passes but causal state continuity fails, repair the state contract rather than broadening the whole prompt.**
