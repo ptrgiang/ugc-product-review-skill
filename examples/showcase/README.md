@@ -31,10 +31,8 @@ The showcase is intentionally separate from `skills/`. The installable skill sho
 
 #### V02
 
-![FLOW-APPLIANCE-001 V02 contact sheet](evidence/flow-appliance-001/v02-contact-sheet.jpg)
+The V02 contact sheet and both V02 video files are temporarily omitted. They will be uploaded manually at original or intentionally chosen quality rather than through an aggressively compressed preview pipeline.
 
-- [Watch V02 clip 1 — ingredient proof / start](evidence/flow-appliance-001/v02-clip-1-preview.mp4)
-- [Watch V02 clip 2 — attempted result / verdict](evidence/flow-appliance-001/v02-clip-2-preview.mp4)
 - [Read V02 QA](evidence/flow-appliance-001/v02-qa.md)
 - [Use the V03 clip-2 repair prompt](evidence/flow-appliance-001/v03-clip-2-prompt.md)
 - [View product reference](evidence/flow-appliance-001/reference-product.jpg)
@@ -86,7 +84,9 @@ Use [CASE_TEMPLATE.md](CASE_TEMPLATE.md) for new showcase cases.
 
 ## Evidence policy
 
-For representative cases, prefer a small evidence bundle near the case:
+For representative cases, keep an evidence bundle near the case. Media should be uploaded at a quality that remains useful for visual inspection.
+
+A typical case may contain:
 
 ```text
 evidence/<case-id>/
@@ -95,14 +95,13 @@ evidence/<case-id>/
 ├── v01-contact-sheet.jpg
 ├── v01-clip-1-preview.mp4
 ├── v01-clip-2-preview.mp4
-├── v02-contact-sheet.jpg
-├── v02-clip-1-preview.mp4
-├── v02-clip-2-preview.mp4
 ├── v02-qa.md
 └── v03-clip-2-prompt.md
 ```
 
-The repository copy should be optimized for browsing, not archival quality. Keep lightweight previews in Git when practical. If showcase media begins making repository history unnecessarily large, move full-resolution videos to Git LFS or release assets and keep stable links plus small previews here.
+Additional generated media can be added manually when ready. Do not aggressively recompress showcase evidence simply to minimize file size.
+
+If video or image size becomes unsuitable for normal Git history, prefer Git LFS or release assets while keeping stable links and, when useful, deliberately generated lightweight derivatives.
 
 Every media item should state:
 
