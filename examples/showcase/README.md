@@ -8,17 +8,19 @@ The showcase is intentionally separate from `skills/`. The installable skill sho
 
 ### FLOW-APPLIANCE-001 — Google Flow / Veo appliance multi-state UGC
 
-**Current status:** V01 and V02 have real generation evidence. V02 validates the split-clip approach but exposes a continuation-state regression in clip 2. V03 is prepared as a targeted clip-2-only repair.
+**Current status:** completed repair lifecycle; **V03 PASS**.
 
 **V01 QA:** `13 / 16`
 
 **V01 lesson:** the original ~12-second story did not fit the tested 8-second-per-generation workflow cleanly. Recompiling as two native 8-second clips improved temporal and physical reliability.
 
-**V02 result:** clip 1 is materially cleaner. Clip 2 incorrectly regresses to coarse/raw ingredients before the lid opens, then shows processed salsa afterward.
+**V02 result:** clip 1 is materially cleaner, but clip 2 regresses to coarse/raw ingredients before the lid opens, then shows processed salsa afterward.
 
 **V02 failure tags:** `STATE_DISCONTINUITY`, `NO_CAUSAL_TRANSITION`, minor `LID_GEOMETRY_DRIFT`.
 
 **V03 repair:** keep V02 clip 1 unchanged and enforce an immutable post-processing opening state in clip 2. The finished salsa must exist before frame 1 and remain unchanged through lid opening.
+
+**V03 QA:** `15 / 16` — PASS. The continuation-state regression is resolved; no V04 is required for this root cause.
 
 ### Evidence preview
 
@@ -31,10 +33,19 @@ The showcase is intentionally separate from `skills/`. The installable skill sho
 
 #### V02
 
-The V02 contact sheet and both V02 video files are temporarily omitted. They will be uploaded manually at original or intentionally chosen quality rather than through an aggressively compressed preview pipeline.
+![FLOW-APPLIANCE-001 V02 contact sheet](evidence/flow-appliance-001/v02-contact-sheet.jpg)
 
+- [Watch V02 clip 1 — ingredient proof / start](evidence/flow-appliance-001/v02-clip-1-preview.mp4)
+- [Watch V02 clip 2 — failed continuation reveal](evidence/flow-appliance-001/v02-clip-2-preview.mp4)
 - [Read V02 QA](evidence/flow-appliance-001/v02-qa.md)
-- [Use the V03 clip-2 repair prompt](evidence/flow-appliance-001/v03-clip-2-prompt.md)
+
+#### V03
+
+![FLOW-APPLIANCE-001 V03 contact sheet](evidence/flow-appliance-001/v03-contact-sheet.jpg)
+
+- [Watch V03 clip 2 — targeted repair](evidence/flow-appliance-001/v03-clip-2-preview.mp4)
+- [Read V03 repair prompt](evidence/flow-appliance-001/v03-clip-2-prompt.md)
+- [Read V03 QA](evidence/flow-appliance-001/v03-qa.md)
 - [View product reference](evidence/flow-appliance-001/reference-product.jpg)
 - [Open the full case →](appliance-multistate-google-flow.md)
 - [Open the evidence bundle →](evidence/flow-appliance-001/README.md)
@@ -60,11 +71,11 @@ ROOT CAUSE
         ↓
 MINIMAL REPAIR
         ↓
-PROMPT V02
+PROMPT V02+
         ↓
 REGENERATION / COMPARISON
         ↓
-TARGETED V03+ REPAIR WHEN A NEW ROOT CAUSE APPEARS
+PASS OR NEW TARGETED REPAIR
 ```
 
 Do not present a case as a success simply because the output looks polished. Failures and limitations are first-class evidence.
@@ -86,7 +97,7 @@ Use [CASE_TEMPLATE.md](CASE_TEMPLATE.md) for new showcase cases.
 
 For representative cases, keep an evidence bundle near the case. Media should be uploaded at a quality that remains useful for visual inspection.
 
-A typical case may contain:
+A typical iterative case may contain:
 
 ```text
 evidence/<case-id>/
@@ -95,13 +106,17 @@ evidence/<case-id>/
 ├── v01-contact-sheet.jpg
 ├── v01-clip-1-preview.mp4
 ├── v01-clip-2-preview.mp4
+├── v02-contact-sheet.jpg
+├── v02-clip-1-preview.mp4
+├── v02-clip-2-preview.mp4
 ├── v02-qa.md
-└── v03-clip-2-prompt.md
+├── v03-contact-sheet.jpg
+├── v03-clip-2-preview.mp4
+├── v03-clip-2-prompt.md
+└── v03-qa.md
 ```
 
-Additional generated media can be added manually when ready. Do not aggressively recompress showcase evidence simply to minimize file size.
-
-If video or image size becomes unsuitable for normal Git history, prefer Git LFS or release assets while keeping stable links and, when useful, deliberately generated lightweight derivatives.
+Do not aggressively recompress showcase evidence merely to minimize file size. If video or image size becomes unsuitable for normal Git history, prefer Git LFS or release assets while keeping stable links and, when useful, deliberately generated lightweight derivatives.
 
 Every media item should state:
 
