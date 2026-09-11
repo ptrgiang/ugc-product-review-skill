@@ -26,24 +26,38 @@ The showcase is intentionally separate from `skills/`. The installable skill sho
 
 #### V01
 
-![FLOW-APPLIANCE-001 V01 contact sheet](evidence/flow-appliance-001/v01-contact-sheet.jpg)
+**Clip 1 — setup / processing**
 
-- [Watch V01 clip 1 — setup / processing](evidence/flow-appliance-001/v01-clip-1-preview.mp4)
-- [Watch V01 clip 2 — reveal / verdict](evidence/flow-appliance-001/v01-clip-2-preview.mp4)
+https://github.com/user-attachments/assets/71937adb-04bc-4c5a-8eb2-d10db02e70ea
+
+**Clip 2 — reveal / verdict**
+
+https://github.com/user-attachments/assets/90213915-376f-4d0a-9afb-f6f9f1cb88e8
+
+![FLOW-APPLIANCE-001 V01 contact sheet](evidence/flow-appliance-001/v01-contact-sheet.jpg)
 
 #### V02
 
+**Clip 1 — ingredient proof / start**
+
+https://github.com/user-attachments/assets/aa72da59-b23f-47be-956e-db1ed5cb4193
+
+**Clip 2 — failed continuation reveal**
+
+https://github.com/user-attachments/assets/1c47f50f-60c2-4bc7-acf0-50fa75b018b6
+
 ![FLOW-APPLIANCE-001 V02 contact sheet](evidence/flow-appliance-001/v02-contact-sheet.jpg)
 
-- [Watch V02 clip 1 — ingredient proof / start](evidence/flow-appliance-001/v02-clip-1-preview.mp4)
-- [Watch V02 clip 2 — failed continuation reveal](evidence/flow-appliance-001/v02-clip-2-preview.mp4)
-- [Read V02 QA](evidence/flow-appliance-001/v02-qa.md)
+[Read V02 QA](evidence/flow-appliance-001/v02-qa.md)
 
 #### V03
 
+**Clip 2 — targeted repair**
+
+https://github.com/user-attachments/assets/b286e7c8-c2ea-4385-b421-6044d13a2cc9
+
 ![FLOW-APPLIANCE-001 V03 contact sheet](evidence/flow-appliance-001/v03-contact-sheet.jpg)
 
-- [Watch V03 clip 2 — targeted repair](evidence/flow-appliance-001/v03-clip-2-preview.mp4)
 - [Read V03 repair prompt](evidence/flow-appliance-001/v03-clip-2-prompt.md)
 - [Read V03 QA](evidence/flow-appliance-001/v03-qa.md)
 - [View product reference](evidence/flow-appliance-001/reference-product.jpg)
@@ -85,11 +99,10 @@ Do not present a case as a success simply because the output looks polished. Fai
 Keep the top of each case useful even for someone who does not read the full prompt:
 
 1. short result summary
-2. visual/reference evidence
-3. generated preview/contact sheet
-4. compact QA score
-5. what changed in the repair
-6. exact prompts and detailed diagnosis below
+2. inline generated-video preview plus contact sheet
+3. compact QA score
+4. what changed in the repair
+5. exact prompts and detailed diagnosis below
 
 Use [CASE_TEMPLATE.md](CASE_TEMPLATE.md) for new showcase cases.
 
@@ -115,6 +128,8 @@ evidence/<case-id>/
 ├── v03-clip-2-prompt.md
 └── v03-qa.md
 ```
+
+For README presentation, prefer GitHub user-attachment URLs so generated videos render inline. Keep repository media files as the auditable evidence copy unless the storage policy changes.
 
 Do not aggressively recompress showcase evidence merely to minimize file size. If video or image size becomes unsuitable for normal Git history, prefer Git LFS or release assets while keeping stable links and, when useful, deliberately generated lightweight derivatives.
 
