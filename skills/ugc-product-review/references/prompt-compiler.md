@@ -138,6 +138,42 @@ same appliance + same bowl + same lid orientation + same counter position + proc
 
 The next clip should start from a causally compatible state, not merely a visually similar composition.
 
+### Immutable opening state for continuation clips
+
+A state handoff alone is not enough when a continuation clip begins **after an important off-screen event**.
+
+When the first frame must already be in a completed state, add an explicit opening-state contract before the timeline.
+
+Define four things:
+
+1. **continuity anchor** — which previous reference/output must be matched;
+2. **immutable opening state** — what is already true at frame 1;
+3. **prior event** — what already happened before this clip begins;
+4. **forbidden regressions** — which earlier states must never reappear.
+
+Example:
+
+```text
+IMMUTABLE OPENING STATE
+This clip begins immediately after processing has fully finished.
+At frame 1, the same bowl remains attached, the machine is stopped, the lid is closed, and the contents are already the finished processed result.
+
+Do not show raw or partially processed ingredients anywhere in this clip.
+Opening the lid does not cause or complete the transformation.
+The transformation happened entirely before this clip begins.
+```
+
+Use this pattern especially for:
+
+- processing already completed;
+- product already applied;
+- cleaning already completed;
+- clothing already fully worn;
+- packaging already opened in a previous clip;
+- assembly or installation already completed before a reveal.
+
+Do not use an immutable opening state when the current clip is supposed to show the transformation itself.
+
 ### Hero-time protection
 
 Do not let setup consume the result.
@@ -193,11 +229,16 @@ Check:
 - requested story duration fits the target generation workflow
 - if split, each clip has one primary physical objective
 - if split, the state handoff is explicit and causally valid
+- if a continuation begins after an off-screen event, the opening state is explicit and earlier states are forbidden from reappearing
 
 Revise before returning if not.
 
-## 11. Evidence-backed compiler note
+## 11. Evidence-backed compiler notes
 
 A real Google Flow / Veo appliance test showed that a concept originally designed as a ~12-second one-pass story became more reliable when recompiled as two native 8-second generations rather than squeezing the same five-state timeline into the shorter workflow limit.
 
 Treat this as a general compiler lesson, not a universal Veo capability claim: **when the actual generation environment exposes a shorter limit than the creative plan, preserve the concept and proof hierarchy, then re-segment the physical objectives for the available duration.**
+
+A later repair in the same case showed a second lesson: a correct continuity description can still allow a continuation clip to reconstruct an earlier visual state. The targeted repair succeeded only after the first frame was treated as an explicit immutable state contract with forbidden regressions.
+
+Generalized rule: **continuity tells the model what to match; an opening-state lock tells it what must already be true.**
