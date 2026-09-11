@@ -27,19 +27,27 @@ product reference → agent route → production prompt → real generation → 
 
 **Google Flow / Veo · countertop appliance · multi-state UGC**
 
-The first showcase case tests a difficult appliance sequence with a fixed product reference, lid interaction, control interaction, processing state, result reveal, and creator verdict. A real generation exposed the practical 8-second clip constraint, so the next revision moves from a fragile long sequence to a **2 × 8s split-clip production plan**.
+The first showcase case tests a difficult appliance sequence with a fixed product reference, lid interaction, control interaction, processing state, result reveal, and creator verdict.
 
-![FLOW-APPLIANCE-001 V01 contact sheet](examples/showcase/evidence/flow-appliance-001/v01-contact-sheet.jpg)
+A real generation exposed a practical 8-second clip constraint. V02 therefore moved to a **2 × 8s split-clip production plan**, but clip 2 introduced a continuation-state regression. V03 repaired only that root cause with an immutable opening-state contract.
 
-**V01 QA:** `13 / 16`
+**V03 — targeted repair result**
 
-- [Watch clip 1 — setup / processing](examples/showcase/evidence/flow-appliance-001/v01-clip-1-preview.mp4)
-- [Watch clip 2 — reveal / verdict](examples/showcase/evidence/flow-appliance-001/v01-clip-2-preview.mp4)
+https://github.com/user-attachments/assets/b286e7c8-c2ea-4385-b421-6044d13a2cc9
+
+![FLOW-APPLIANCE-001 V03 contact sheet](examples/showcase/evidence/flow-appliance-001/v03-contact-sheet.jpg)
+
+**V01 QA:** `13 / 16`  
+**V03 QA:** `15 / 16` — **PASS**
+
+The full showcase preserves all V01, V02, and V03 videos, contact sheets, prompts, QA notes, failure tags, and repair reasoning.
+
 - [View the product reference](examples/showcase/evidence/flow-appliance-001/reference-product.jpg)
 - [Open the showcase index](examples/showcase/README.md)
 - [Open the full appliance case](examples/showcase/appliance-multistate-google-flow.md)
+- [Open the evidence bundle](examples/showcase/evidence/flow-appliance-001/README.md)
 
-The showcase records what worked, what failed, the QA tags, and why the next prompt revision changes only the affected production decisions. This follows a proof-first pattern: show the actual output path, disclose the prompt, and make evaluation reproducible rather than presenting polished claims alone.
+The showcase records what worked, what failed, the QA tags, and why each prompt revision changes only the affected production decisions. This follows a proof-first pattern: show the actual output, disclose the prompt, and make evaluation reproducible rather than presenting polished claims alone.
 
 ## Why this exists
 
