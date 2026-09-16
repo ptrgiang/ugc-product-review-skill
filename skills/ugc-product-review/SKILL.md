@@ -1,6 +1,6 @@
 ---
 name: ugc-product-review
-description: Create, diversify, evaluate, and repair realistic UGC product-review video concepts and generation prompts from product references, creator references, product details, campaign goals, or generated video results. Use for TikTok, Reels, Shorts, affiliate UGC, organic reviews, paid UGC concepts, batch campaigns, prompt debugging, product-consistency repair, and performance-driven creative iteration.
+description: Create, diversify, evaluate, and repair realistic UGC product-review video concepts and generation prompts from product references, creator references, product details, campaign goals, or generated video results. Use for TikTok, Reels, Shorts, affiliate UGC, organic reviews, paid UGC concepts, batch campaigns, prompt debugging, product-consistency repair, performance-driven creative iteration, and optional slash-style creative presets for supporting product, creator, hook-frame, storyboard, continuity, and campaign assets.
 ---
 
 # UGC Product Review
@@ -30,6 +30,26 @@ Always open `references/core.md`, then open only the smallest additional set tha
 Before opening optional references, classify the requested deliverable first. A request for concepts, angles, campaign ideas, or a creative plan is **not** a request for a compiled generation prompt unless the user explicitly asks for full prompts, generation-ready prompts, shot-by-shot prompts, or equivalent executable prompt output.
 
 ## Progressive disclosure routes
+
+### Explicit slash-command preset
+
+Use this route when the user explicitly types a recognized slash-style preset such as `/productshot`, `/characterref`, `/hookframe`, `/storyboard`, or another command listed by the preset router.
+
+Open before answering:
+
+- `references/core.md`
+- `references/slash-commands.md`
+- exactly one matching group file under `references/slash-commands/`
+
+Then add the normal task-route references below only when the larger request actually requires them.
+
+Important:
+
+- slash presets are textual intent modifiers, not platform-native commands
+- do not load all preset group files
+- a slash preset never overrides product locks, creator locks, physical plausibility, factual constraints, or claims rules
+- when the command alone asks for a supporting visual asset, do not automatically load `creative-strategy.md` or `prompt-compiler.md` unless they materially change that deliverable
+- when a slash preset appears inside a normal UGC-video request, integrate it into the selected UGC route instead of producing an unrelated second output
 
 ### One product -> ideas or one review prompt
 
@@ -121,6 +141,7 @@ When the user explicitly asks which references were used, report only files that
 
 The expected minimal routing patterns are:
 
+- slash preset only: `core + slash-commands + one preset group`
 - single product prompt: `core + creative-strategy + one category + prompt-compiler`
 - campaign concepts only: `core + creative-strategy + one category + campaign-engine` and **no prompt-compiler**
 - campaign full prompts: `core + creative-strategy + one category + campaign-engine + prompt-compiler`
@@ -175,5 +196,6 @@ Before finalizing, verify:
 - the hero moment has enough screen time
 - the prompt is not overloaded
 - the output looks like UGC rather than a polished commercial unless the user explicitly wants an ad
+- any slash preset remains subordinate to product fidelity, creator fidelity, truthful claims, and the requested output type
 
 The best prompt is not the longest prompt. Use the smallest set of precise instructions that maximizes generation reliability.
