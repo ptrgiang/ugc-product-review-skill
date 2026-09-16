@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ugc-product-review-skill",
-  "version": "1.0.0",
-  "description": "Portable Agent Plugin containing a modular skill for realistic UGC product-review video strategy, prompt generation, campaign variation, QA, and prompt repair.",
+  "version": "1.1.0",
+  "description": "Portable Agent Plugin containing a modular skill for realistic UGC product-review video strategy, prompt generation, campaign variation, QA, prompt repair, and optional slash-style creative presets for supporting assets.",
   "author": {
     "name": "ptrgiang",
     "url": "https://github.com/ptrgiang"
@@ -16,6 +16,8 @@
     "video-generation",
     "prompt-engineering",
     "product-review",
-    "ai-video"
+    "ai-video",
+    "slash-commands",
+    "creative-presets"
   ]
 }
